@@ -18,6 +18,10 @@
   margin: 0 auto;
 }
 
+#icon1, #icon2 {
+  width: 100%;
+}
+
 .container1 {
   width: 100%;
   display: flex;
@@ -33,14 +37,25 @@
 }
 
 .navlinks {
-  /* font-family: sans-serif; */
+  font-family: sans-serif;
   padding-top: 10px;
   display: flex;
   justify-content: center;
   gap: 30px;
+  border: none;
   color: #303e6f;
 }
 
+#category {
+  border: none;
+  padding: 3px;
+  font-size: 18px;
+}
+
+#contactdisplay {
+  text-decoration: none;
+  color: #000;
+}
 
 .basket {
   width: 34%;
@@ -58,11 +73,10 @@
 #basketimg {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 10%;
-  height: 40px;
+  width: 30%;
   border-radius: 50%;
+  background-color: #fff;
+  border: none;
 }
 
 #bell {
@@ -72,7 +86,9 @@
   justify-content: center;
   width: 10%;
   height: 40px;
+  border: none;
   border-radius: 50%;
+  background-color: #fff;
 }
 
 .fa-regular {
@@ -90,7 +106,7 @@
   margin-bottom: 39px;
   margin-right: -9px;
   padding: 5px;
-  background-color: #f2cd88;
+  background-color: #e59808;
   border-radius: 50%;
 }
 
@@ -102,7 +118,6 @@
   color: #fff;
   background-color: #303e6f;
   border-radius: 50%;
-
 }
 
 .stars{
@@ -122,23 +137,21 @@
   display: flex;
   width: 26%;
   height: 40px;
-  gap: 8px;
+  gap: 18px;
 }
 
 .title-image img {
-  width: 50%;
   border-radius: 50%;
-  object-fit: cover;
 }
 
 #gmorning, #johnson {
   padding: 3px;
-  font-size: 8px;
+  font-size: 12px;
 }
 
 #johnson {
   color: #303e6f;
-  background-color: #f4e8f3;
+  background-color: #ffffff;
 }
 
 #gmorning {
@@ -150,17 +163,18 @@
 }
 
 .buy-now-section {
-  border-radius: 8px;
+  /* border-radius: 8px; */
   background-color: #f4e8f3;
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  padding-left: 15rem;
 }
 
 .grap-50 {
   background: #f4e8f3;
   padding-bottom: 20px;
+  width: 55%;
 }
 
 .avatar {
@@ -168,6 +182,7 @@
   font-size: 13px;
   font-weight: 500;
   color: #777;
+  padding-left: 9rem;
 }
 
 #img {
@@ -183,7 +198,7 @@
 
  #headphone {
   color: #303e6f;
-  font-size: 29px;
+  font-size: 34px;
   padding: 10px;
   padding-bottom: 14px;
   width: 50%;
@@ -229,12 +244,6 @@
   display: flex;
   gap: 20px;
  }
-
- /* .dropdown {
-  padding: 10px;
-  border-radius: 41.3%;
-  font-size: 28px;
- } */
 
  #headers {
   padding: 10px;

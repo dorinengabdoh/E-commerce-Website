@@ -25,11 +25,9 @@ export function navbar() {
     <option>shoes</option>
     <option>bags</option>
     <option>hats</option>
-
-
     </select></span>
     <span id="brand">Brand</span>
-   <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
+    <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
     <span id="faq">FAQ's</span>
   </div>
 </div>
@@ -37,11 +35,11 @@ export function navbar() {
 <div class="basket">
   <button id="basketimg">
     <span id="items-selected">0</span>
-    <i class="fa-solid fa-bag-shopping"></i>
+    <i id="icon1" class="fa-solid fa-bag-shopping"></i>
   </button>
   <button id="bell">
     <span id="bells"></span>
-    <i class="fa-regular fa-bell"></i>
+    <i id="icon2" class="fa-regular fa-bell"></i>
   </button>
   <div class="title-image">
     <img src="./image/IMG-20220225-WA0033.jpg">
@@ -95,8 +93,8 @@ const container2 = document.querySelector(".container2");
 export function avatarSection() {
   return (container2.innerHTML = ` <div class="buy-now-section">
   <div class="grap-50">
-    <h1 id="headphone">Grap up to 50% off on Selected Headphone</h1>
-
+    <h1 id="headphone">Grap up to 50% off 
+    <br />on Selected Headphone</h1>
     <button id="buynow">Buy Now</button>
   </div>
 
@@ -141,12 +139,6 @@ export function displayCards(fetchData) {
 
   fetchData?.forEach((item) => {
     const arrImages = item.images;
-
-    // const subcard = document.getElementById('subcards')
-    // const img = document.createElement('img')
-    // img.src = `${item.thumbnail}`
-    // subcard.appendChild(img)
-
     top.innerHTML += `<div class="top">
       <div class="subcard" id="subcards">
         
