@@ -104,9 +104,6 @@ export function avatarSection() {
   </div>
 </div>`);
 }
-
-
-
 avatarSection();
 
 //display buttons section
