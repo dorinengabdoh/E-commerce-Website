@@ -443,7 +443,8 @@
 .input {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  padding-top: 2rem;
 }
 
 #drop {
@@ -452,6 +453,7 @@
   padding: 9px 2px;
   align-items: center;
   border: none;
+  background-color: #d9dbdd;
 }
 
 .contain {
@@ -460,10 +462,6 @@
 }
 .conatin2 {
   padding-top: 3rem;
-}
-
-.coller {
-
 }
 
 label{
@@ -479,4 +477,33 @@ input{
 .up1 {
   font-size: 35px;
   font-weight: bold;
+}
+
+#root {
+  padding-left: 4rem;
+}
+
+textarea{
+  padding-top: 2rem;
+}
+
+#send {
+  justify-content: center;
+  padding: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 14px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: 3rem;
+  background-color: #1472b2;
+  color: #fff;
+  text-align: center;
+}
+
+.textea {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: start
 }
