@@ -3,22 +3,20 @@ import { displayallproducts, allCategories, categorydisplay } from "./api.js";
 const getJson = await allCategories();
 let productrender = [];
 
-displayallproducts()
+if(displayallproducts)displayallproducts()
   .then((res) => {
     productrender = res;
     displayCards(productrender);
   })
-  .catch((err) => console.error(err));
-console.log("Json Data", getJson);
 
 console.log({ productrender });
 
-const container1 = document.querySelector(".container1");
 // const category = document.getElementById('category')
 
 export function navbar() {
-  container1.innerHTML = ` <div class="title">
-  <h1 id="fashionhub"><i>FashionHub</i></h1>
+  const container1 = document.querySelector(".container1");
+  if(container1)container1.innerHTML = ` <div class="title">
+  <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>
   <div class="navlinks">
     <span><select id="category">
     <option>shoes</option>
@@ -88,9 +86,9 @@ if (selectedCategory !== "") {
 
 //display avatar section
 
-const container2 = document.querySelector(".container2");
 export function avatarSection() {
-  return (container2.innerHTML = ` <div class="buy-now-section">
+  const container2 = document.querySelector(".container2");
+  if(container2)container2.innerHTML = `<div class="buy-now-section">
   <div class="grap-50">
     <h1 id="headphone">Grap up to 50% off 
     <br />on Selected Headphone</h1>
@@ -99,15 +97,15 @@ export function avatarSection() {
   <div class="avatar">
   <img src="./image/Slider 1.png" alt="" id="img">
   </div>
-</div>`);
+</div>`;
 }
 avatarSection();
 
 //display buttons section
-const container3 = document.querySelector(".container3");
 
 export function buttons() {
-  return (container3.innerHTML = ` <div class="dropdown-buttons">
+  const container3 = document.querySelector(".container3");
+  if(container3)container3.innerHTML = ` <div class="dropdown-buttons">
   <div class="price">
  <select id="headers"><option id="headers"> HeadePhone-type</option></select>
   <select id="headers"><option id="headers">Price</option></select>
@@ -120,7 +118,7 @@ export function buttons() {
 <div class="headphone-type">
 <select id="headerss"><option id="headers"> HeadePhone-type</option></select>
 </div>
-</div>`);
+</div>`;
 }
 
 buttons();
@@ -131,7 +129,7 @@ export function displayCards(fetchData) {
   const top = document.querySelector(".container4");
   fetchData?.forEach((item) => {
     const arrImages = item.images;
-    top.innerHTML += `<div class="top">
+    if (top)top.innerHTML += `<div class="top">
       <div class="subcard" id="subcards">
         <a href="/details.html?id=${item.id}"><img src=${item.thumbnail} id="details-page"/></a>
       <i class="fa-regular fa-heart"></i>
@@ -165,14 +163,9 @@ export function displayCards(fetchData) {
   });
 }
 
-// const imagediv = document.getElementById('details-page')
-// imagediv.addEventListener("click", ()=>{
-//   console.log('josey');
-// })
-
-const container5 = document.querySelector(".container5");
 export function previews() {
-  container5.innerHTML = `<div class="previews">
+  const container5 = document.querySelector(".container5");
+  if(container5)container5.innerHTML = `<div class="previews">
   <button id="previews">Preview</button>
   <button id="previews">1</button>
   <button id="previews">2</button>
@@ -187,10 +180,10 @@ export function previews() {
 
 previews();
 
-const container6 = document.querySelector(".container6");
 
 export function footer() {
-  container6.innerHTML = `<div class="footer">
+  const container6 = document.querySelector(".container6");
+ if(container6) container6.innerHTML = `<div class="footer">
   <h2 id="footer">Footer</h2>
 </div>`;
 }

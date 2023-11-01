@@ -1,5 +1,6 @@
 import { navbar } from './main.js';
 
-const header = document.querySelector(".container1")
+const container1 = document.querySelector(".container1")
 
-header.innerHTML = navbar()
+if(container1)container1.innerHTML += navbar()
+console.log(container1);

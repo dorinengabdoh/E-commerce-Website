@@ -507,3 +507,29 @@ textarea{
   gap: 1rem;
   justify-content: start
 }
+
+/* detailspage style */
+
+.image {
+  display: flex;
+  width: 20%;
+  margin-top: 2rem;
+  border-radius: 9px;
+  gap: 1rem;
+}
+
+#single_product{
+  width: 8rem ;
+  border: 2px solid #c3baba;
+  padding: 3px;
+  border-radius: 9px;
+}
+
+#pict_detail {
+  width: 60%;
+  margin-top: 2rem;
+}
+
+#direct {
+  width: 8%;
+}
