@@ -9,7 +9,6 @@ displayallproducts()
     displayCards(productrender);
   })
   .catch((err) => console.error(err));
-
 console.log("Json Data", getJson);
 
 console.log({ productrender });
@@ -132,14 +131,11 @@ buttons();
 
 export function displayCards(fetchData) {
   const top = document.querySelector(".container4");
-  top.innerHTML = "";
-
   fetchData?.forEach((item) => {
     const arrImages = item.images;
     top.innerHTML += `<div class="top">
       <div class="subcard" id="subcards">
-        
-      <img src=${item.thumbnail} id="details-page"/>
+        <a href="/details.html?id=${item.id}"><img src=${item.thumbnail} id="details-page"/></a>
       <i class="fa-regular fa-heart"></i>
       </div>
 
