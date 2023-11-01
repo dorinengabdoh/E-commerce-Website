@@ -5,16 +5,23 @@ const container1 = document.querySelector(".all");
 
 container1.innerHTML = navbar();
 
-const getJson = await allCategories();
-let productrender = [];
+let i =10;
+console.log(i);
 
 displayallproducts()
 .then((response) => {
   return response.json();
 })
+
 .then((data) => {
   console.log(data);
-  displayallproducts(data.meals);
 });
+
+
+
+
+// display the picture
+
+
 
 

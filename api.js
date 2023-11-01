@@ -3,7 +3,7 @@ export async function allCategories() {
   const allcategories = "https://dummyjson.com/products/categories"
   const fetchdata = await fetch(allcategories)
   const jasondata = await fetchdata.json()
-  console.log(jasondata);
+  // console.log(jasondata);
 
   return jasondata
 }
@@ -14,7 +14,7 @@ export async function categorydisplay (category) {
   const eachcategory = `https://dummyjson.com/products/category/${category}`
   const fetchdata = await fetch(eachcategory)
   const jasondata = await fetchdata.json()
-  console.log(jasondata);
+  // console.log(jasondata);
   return jasondata
   // https://dummyjson.com/products/category/smartphones
 }
@@ -23,12 +23,10 @@ export async function displayallproducts () {
   const products = "https://dummyjson.com/products?limit=0&skip=0"
   const productdata = await fetch(products)
   const data = await productdata.json()
-  console.log(data);
+  // console.log(data);
   const targetdata = data.products
-  console.log( targetdata);
-
+  // console.log( targetdata);
   return  targetdata
-  // const targetProduct = data.products
 }
 
 

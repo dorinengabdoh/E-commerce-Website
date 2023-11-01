@@ -96,8 +96,6 @@ export function avatarSection() {
     <br />on Selected Headphone</h1>
     <button id="buynow">Buy Now</button>
   </div>
-
-
   <div class="avatar">
   <img src="./image/Slider 1.png" alt="" id="img">
   </div>
