@@ -129,6 +129,8 @@ buttons();
 
 export function displayCards(fetchData) {
   const top = document.querySelector(".container4");
+  top.innerHTML = "";
+
   fetchData?.forEach((item) => {
     const arrImages = item.images;
     if (top)top.innerHTML += `<div class="top">

@@ -26,27 +26,12 @@ function displaydetailsPicture(pict){
     mealCard.innerHTML = `
     <img id="pict_detail" src="${product.thumbnail}" />
     <div class="image">
-    <img id="direct" src="./image/Frame (2).png">
+    <i class="fa-solid fa-chevron-left" id="prev"></i>
     <img id="single_product" src="${product.images[0]}" />
     <img id="single_product" src="${product.images[1]}" />
     <img id="single_product" src="${product.images[2]}" />
     <img id="single_product" src="${product.images[3]}" />
-    <img id="direct" src="./image/Frame2 (2).png">
-    </div>
-    <div class="details-left">
-    <select name="" id="">
-    <option value="">home</option>
-    </select>
-    <select name="" id="">
-    <option value="">Decoration</option>
-    </select>
-    <select name="" id="">
-    <option value="">Furniture</option>
-    </select>
-    <select name="" id="">
-    <option value="">Sideboard</option>
-    </select>
-  </div>
+    <i class="fa-solid fa-chevron-right" id="next"></i>    </div>
     `
 
    mealContainer.appendChild(mealCard);

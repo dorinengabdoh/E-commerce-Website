@@ -527,12 +527,16 @@ textarea{
 
 #pict_detail {
   width: 90%;
-  margin-top: 2rem;
   border-radius: 10px;
+  margin-top: 2rem;
 }
 
 .details-picture {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  justify-content: space-between;
+  /* display: flex; */
+  /* transition: all 0.5s ease; */
 }
 
 #direct {
@@ -541,8 +545,49 @@ textarea{
 
 .details-left {
   display: flex;
+  margin-top: 2rem;
+  margin-left: 4rem;
 }
 
 .pict {
   display: flex;
+  justify-content: center;
+}
+
+#prev, #next{
+  padding-top: 3.5rem;
+}
+
+#select {
+  font-size: 17px;
+  border: none;
+  background-color: #e7f5ff;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+#text-comment {
+  font-weight: bold;
+  font-size: 29px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.gras {
+  font-weight: bold;
+  color: #354dad;
+}
+
+.text-color {
+  color: #777;
+}
+
+.comment {
+  display: flex;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.icons-comment {
+  display: flex;
+  gap: 0.5rem;
 }
