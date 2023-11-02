@@ -602,7 +602,7 @@ textarea{
 #hrr {
   margin-top: 2rem;
   margin-bottom: 2rem;
-  width: 80%;
+  width: 70%;
 }
 
 #ic_comment{
@@ -624,4 +624,67 @@ textarea{
   background-color: #9fb3e9;
   padding: 6px;
   border-radius: 8px;
+}
+
+.prices {
+  margin-left: 3rem;
+  font-size: 35px;
+  padding-top: 2rem;
+  font-weight: bold;
+  color: #064e7f;
+}
+.price {
+  font-size: 26px;
+  margin-left: 3rem;
+  padding-top: 0.5rem;
+  font-weight: bold;
+  color: #989b9d;
+  text-decoration: line-through;
+}
+
+.left {
+  width: 20rem;
+}
+
+.buttom {
+  display: flex;
+  gap: 3rem;
+
+}
+
+.a5{
+  padding: 5px 5rem;
+  font-size: 20px;
+border-radius: 23px;
+color: #000;
+font-family: 'Times New Roman', Times, serif;
+background-color: #c7dff0;
+}
+
+.addd {
+  color: #fff;
+  border-radius: 23px;
+  padding: 5px 5rem;
+  justify-content: center;
+  background-color: #303e6f;
+}
+
+.reviews {
+  display: flex;
+  margin-top: 2rem;
+  font-weight: bold;
+  gap: 2rem;
+  font-size: 20px;
+}
+
+.blue {
+  color: #354dad;
+}
+
+.black{
+  color: #646161;
+}
+
+.line {
+  display: flex;
 }

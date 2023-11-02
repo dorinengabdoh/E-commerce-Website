@@ -33,7 +33,9 @@ function displaydetailsPicture(pict){
     <img id="single_product" src="${product.images[3]}" />
     <i class="fa-solid fa-chevron-right" id="next"></i>    </div>
     <div class="item-price">
-    <p>$${product.price}</p>
+    <p class="prices">$${product.price}</p>
+    <p class="price">$${product.price}</p>
+
     </div>
     
     `
