@@ -535,8 +535,6 @@ textarea{
   display: grid;
   grid-template-columns: 1fr 1fr; 
   justify-content: space-between;
-  /* display: flex; */
-  /* transition: all 0.5s ease; */
 }
 
 #direct {
@@ -547,6 +545,10 @@ textarea{
   display: flex;
   margin-top: 2rem;
   margin-left: 4rem;
+}
+
+.all-left {
+  width: 100%;
 }
 
 .pict {
@@ -589,5 +591,37 @@ textarea{
 
 .icons-comment {
   display: flex;
-  gap: 0.5rem;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+#ecart {
+  width: 10px;
+}
+
+#hrr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 80%;
+}
+
+#ic_comment{
+  color: #cf4e4e;
+  background-color: #d49898;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+#ic_commen{
+  color: #040c22;
+  background-color: #9fb3e9;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+#ic_comme {
+  color: #040c22;
+  background-color: #9fb3e9;
+  padding: 6px;
+  border-radius: 8px;
 }

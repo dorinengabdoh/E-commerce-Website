@@ -53,6 +53,23 @@ export function navbar() {
 
 navbar();
 
+// counter selection
+
+export function setupCounter(card) {
+   const addtocard = document.getElementById("addtocard")
+  let counter = document.getElementById("items-selected")
+  counter =0;
+  const setCounter = (count) => {
+    counter = count
+    card.innerHTML = `count is ${counter}`
+  }
+  addtocard.addEventListener('click', () => setCounter(counter + 1))
+  setCounter(0)
+  console.log(counter);
+
+}
+
+
 // map and display cat
 let category = document.getElementById("category");
 category.innerHTML = getJson.map(
@@ -156,8 +173,8 @@ export function displayCards(fetchData) {
       <p id="number">(121)</p>
       </div>          
       <div class="date">
-        <button id="addtocard">Add to Card</button>
-        <button id="shortlist">Short List</button>
+      <button id="addtocard">Add to Card</button>
+      <button id="shortlist">Short List</button>
       </div>
 
 
