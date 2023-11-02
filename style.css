@@ -687,4 +687,31 @@ background-color: #c7dff0;
 
 .line {
   display: flex;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.description {
+  margin-top: 2.5rem;
+  margin-left: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#desc {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.deux {
+  border: 0.5px dashed #8d8a86;
+  width: fit-content;
+  padding: 9px;
+  border-radius: 7px;
+  font-size: 20px;
+}
+
+.benefict, .details, .more{
+  margin-top: 2.5rem;
 }

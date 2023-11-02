@@ -3,11 +3,11 @@ import { displayallproducts, allCategories, categorydisplay } from "./api.js";
 const getJson = await allCategories();
 let productrender = [];
 
-if(displayallproducts)displayallproducts()
-  .then((res) => {
+if (displayallproducts)
+  displayallproducts().then((res) => {
     productrender = res;
     displayCards(productrender);
-  })
+  });
 
 console.log({ productrender });
 
@@ -15,7 +15,8 @@ console.log({ productrender });
 
 export function navbar() {
   const container1 = document.querySelector(".container1");
-  if(container1)container1.innerHTML = ` <div class="title">
+  if (container1)
+    container1.innerHTML = ` <div class="title">
   <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>
   <div class="navlinks">
     <span><select id="category">
@@ -56,19 +57,17 @@ navbar();
 // counter selection
 
 export function setupCounter(card) {
-   const addtocard = document.querySelectorAll(".addtocard")
-  let counter = document.getElementById("items-selected")
-  counter =0;
+  const addtocard = document.querySelectorAll(".addtocard");
+  let counter = document.getElementById("items-selected");
+  counter = 0;
   const setCounter = (count) => {
-    counter = count
+    counter = count;
     console.log(counter);
-  }
-  addtocard.addEventListener('click', () => setCounter(counter + 1))
-  setCounter(0)
+  };
+  addtocard.addEventListener("click", () => setCounter(counter + 1));
+  setCounter(0);
   console.log(counter);
-                                                                                                                                                                                                                                                    
 }
-
 
 // map and display cat
 let category = document.getElementById("category");
@@ -76,8 +75,6 @@ category.innerHTML = getJson.map(
   (item) => `
  <option id="category">${item}</option>`
 );
-
-
 
 let selectedCategory = "";
 
@@ -107,7 +104,8 @@ if (selectedCategory !== "") {
 
 export function avatarSection() {
   const container2 = document.querySelector(".container2");
-  if(container2)container2.innerHTML = `<div class="buy-now-section">
+  if (container2)
+    container2.innerHTML = `<div class="buy-now-section">
   <div class="grap-50">
     <h1 id="headphone">Grap up to 50% off 
     <br />on Selected Headphone</h1>
@@ -124,7 +122,8 @@ avatarSection();
 
 export function buttons() {
   const container3 = document.querySelector(".container3");
-  if(container3)container3.innerHTML = ` <div class="dropdown-buttons">
+  if (container3)
+    container3.innerHTML = ` <div class="dropdown-buttons">
   <div class="price">
  <select id="headers"><option id="headers"> HeadePhone-type</option></select>
   <select id="headers"><option id="headers">Price</option></select>
@@ -148,12 +147,44 @@ export function displayCards(fetchData) {
   const top = document.querySelector(".container4");
   top.innerHTML = "";
 
+  const testFunction = () => {
+    alert("hello");
+  };
+
+  const addListenersToAddToCardButton = () => {
+    const allAdToCArdBtns = document.querySelectorAll(".addtocard");
+    const selectItem = document.getElementById("items-selected");
+
+    allAdToCArdBtns.forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const imageId = e.target.dataset.imageid; // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+
+        console.log({imageId})
+        
+        const prevItems = JSON.parse(sessionStorage.getItem("cardItems")) || [];
+        const isFound = prevItems.find((item) => +item.id === +imageId); // +"2" === parseInt("2");
+
+        if(isFound)  { // then remove existing item from sessionStorage;
+          const update = prevItems.filter((item) => +item.id !== +imageId);
+          selectItem.innerHTML = update.length;
+
+          sessionStorage.setItem("cardItems", JSON.stringify(update));
+        } else {
+          const update = [...prevItems, fetchData.find((item) => +item.id === +imageId)]
+          selectItem.innerHTML = update.length;
+          sessionStorage.setItem("cardItems", JSON.stringify(update))
+        }
+      });
+    });
+  };
+
   fetchData?.forEach((item) => {
-    const arrImages = item.images;
-    if (top)top.innerHTML += `<div class="top">
+    if (top)
+      top.innerHTML += `
+    <div class="top">
       <div class="subcard" id="subcards">
         <a href="/details.html?id=${item.id}"><img src=${item.thumbnail} id="details-page"/></a>
-      <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-heart"></i>
       </div>
 
       <div class="snikersprice">
@@ -161,32 +192,32 @@ export function displayCards(fetchData) {
         <span id="snykers-price">$${item.price}</span>
       </div>
 
-      <div class="shoes-available">
+      <div class="shoes-available" data-name>
         <p id="shoes"> 5 types of shoes available</p>
       </div>
       <div class="stars">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <p id="number">(121)</p>
-      </div>          
-      <div class="date">
-      <button id="addtocard" class="addtocard">Add to Card</button>
-      <button id="shortlist">Short List</button>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <p id="number">(121)</p>
       </div>
-
-
+      <div class="date">
+        <button id="addtocard" class="addtocard" data-imageid="${item.id}">Add to Card</button>
+        <button id="shortlist">Short List</button>
+      </div>
     </div>
- 
   `;
   });
+
+  addListenersToAddToCardButton();
 }
 
 export function previews() {
   const container5 = document.querySelector(".container5");
-  if(container5)container5.innerHTML = `<div class="previews">
+  if (container5)
+    container5.innerHTML = `<div class="previews">
   <button id="previews">Preview</button>
   <button id="previews">1</button>
   <button id="previews">2</button>
@@ -201,10 +232,10 @@ export function previews() {
 
 previews();
 
-
 export function footer() {
   const container6 = document.querySelector(".container6");
- if(container6) container6.innerHTML = `<div class="footer">
+  if (container6)
+    container6.innerHTML = `<div class="footer">
   <h2 id="footer">Footer</h2>
 </div>`;
 }
