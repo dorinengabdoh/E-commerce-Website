@@ -32,8 +32,21 @@ function displaydetailsPicture(pict){
     <img id="single_product" src="${product.images[2]}" />
     <img id="single_product" src="${product.images[3]}" />
     <img id="direct" src="./image/Frame2 (2).png">
-
     </div>
+    <div class="details-left">
+    <select name="" id="">
+    <option value="">home</option>
+    </select>
+    <select name="" id="">
+    <option value="">Decoration</option>
+    </select>
+    <select name="" id="">
+    <option value="">Furniture</option>
+    </select>
+    <select name="" id="">
+    <option value="">Sideboard</option>
+    </select>
+  </div>
     `
 
    mealContainer.appendChild(mealCard);

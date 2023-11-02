@@ -60,13 +60,15 @@ category.innerHTML = getJson.map(
  <option id="category">${item}</option>`
 );
 
+
+
 let selectedCategory = "";
 
 category.addEventListener("input", async (e) => {
   category = e.target.value;
   selectedCategory = category;
-  const res = await categorydisplay(category);
 
+  const res = await categorydisplay(category);
   productrender = res?.products;
 
   console.log({ category, productrender, res });

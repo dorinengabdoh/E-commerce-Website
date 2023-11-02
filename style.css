@@ -526,10 +526,23 @@ textarea{
 }
 
 #pict_detail {
-  width: 60%;
+  width: 90%;
   margin-top: 2rem;
+  border-radius: 10px;
+}
+
+.details-picture {
+  display: flex;
 }
 
 #direct {
-  width: 8%;
+  width: 7%;
+}
+
+.details-left {
+  display: flex;
+}
+
+.pict {
+  display: flex;
 }
