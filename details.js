@@ -14,6 +14,7 @@ const picture = await displayallproducts()
 .then((Response) => {
   console.log(Response);
   displaydetailsPicture(Response)
+  DisplaySimilarProduct(Response)
 })
 
 
@@ -44,6 +45,26 @@ function displaydetailsPicture(pict){
    mealContainer.appendChild(mealCard);
    }
   });
+}
+
+function DisplaySimilarProduct(prod){
+  const mealContaine = document.querySelector(".similar");
+  prod?.forEach((produ) => {
+    if (productId == produ.id) {
+      const mealCar = document.createElement("div")
+      mealCar.classList.add(".sim")
+      console.log(prod.thumbnail);
+
+      mealCar.innerHTML = `
+      <p> Similar Items You Might Also Like</p>
+      <img id="icon-img" src="${prod.thumbnail}" alt="">
+
+      `
+      mealContaine.appendChild(mealCar);
+    }
+
+ })
+
 }
 
 // display the picture

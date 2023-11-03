@@ -183,7 +183,7 @@ export function displayCards(fetchData) {
       top.innerHTML += `
     <div class="top">
       <div class="subcard" id="subcards">
-        <a href="/details.html?id=${item.id}"><img src=${item.thumbnail} id="details-page"/></a>
+        <a href="/details.html?id=${item.id}&category=${item.category}"><img src=${item.thumbnail} id="details-page"/></a>
         <i class="fa-regular fa-heart"></i>
       </div>
 
