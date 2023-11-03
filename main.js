@@ -17,7 +17,7 @@ export function navbar() {
   const container1 = document.querySelector(".container1");
   if (container1)
     container1.innerHTML = ` <div class="title">
-  <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>
+  <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
   <div class="navlinks">
     <span><select id="category">
     <option>shoes</option>
@@ -32,7 +32,7 @@ export function navbar() {
 
 <div class="basket">
   <button id="basketimg">
-    <span id="items-selected">0</span>
+    <span id="items-selected"><a href="./card.html" class="hover">0</a></span>
     <i id="icon1" class="fa-solid fa-bag-shopping"></i>
   </button>
   <button id="bell">
@@ -150,7 +150,7 @@ export function displayCards(fetchData) {
   const testFunction = () => {
     alert("hello");
   };
-
+    // fucntion toAdd
   const addListenersToAddToCardButton = () => {
     const allAdToCArdBtns = document.querySelectorAll(".addtocard");
     const selectItem = document.getElementById("items-selected");
@@ -161,18 +161,18 @@ export function displayCards(fetchData) {
 
         console.log({imageId})
         
-        const prevItems = JSON.parse(sessionStorage.getItem("cardItems")) || [];
+        const prevItems = JSON.parse(localStorage.getItem("cardItems")) || [];
         const isFound = prevItems.find((item) => +item.id === +imageId); // +"2" === parseInt("2");
 
         if(isFound)  { // then remove existing item from sessionStorage;
           const update = prevItems.filter((item) => +item.id !== +imageId);
           selectItem.innerHTML = update.length;
 
-          sessionStorage.setItem("cardItems", JSON.stringify(update));
+          localStorage.setItem("cardItems", JSON.stringify(update));
         } else {
           const update = [...prevItems, fetchData.find((item) => +item.id === +imageId)]
           selectItem.innerHTML = update.length;
-          sessionStorage.setItem("cardItems", JSON.stringify(update))
+          localStorage.setItem("cardItems", JSON.stringify(update))
         }
       });
     });

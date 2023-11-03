@@ -1,6 +1,11 @@
 const data = window.location.search;
 const urlParam = new URLSearchParams(data);
 const productId = urlParam.get("id");
+const allAdToCArdBtns = document.querySelector(".addd")
+
+const dataCategory = window.location.search;
+const category = new URLSearchParams(dataCategory);
+const categoryId = category.get("category");
 import { navbar } from "./main.js";
 import { displayallproducts } from "./api.js";
 
@@ -32,7 +37,8 @@ function displaydetailsPicture(pict){
     <img id="single_product" src="${product.images[1]}" />
     <img id="single_product" src="${product.images[2]}" />
     <img id="single_product" src="${product.images[3]}" />
-    <i class="fa-solid fa-chevron-right" id="next"></i>    </div>
+    <i class="fa-solid fa-chevron-right" id="next"></i>   
+     </div>
     <div class="item-price">
     <p class="prices"> Product Price: $${product.price}</p>
     <p class="price"> Product Price: $${product.price}</p>
@@ -46,18 +52,18 @@ function displaydetailsPicture(pict){
    }
   });
 }
-
+// categoty
 function DisplaySimilarProduct(prod){
   const mealContaine = document.querySelector(".similar");
   prod?.forEach((produ) => {
-    if (productId == produ.id) {
+    if (categoryId == produ.category) {
       const mealCar = document.createElement("div")
       mealCar.classList.add(".sim")
-      console.log(prod.thumbnail);
-
+      console.log(produ.id);
       mealCar.innerHTML = `
-      <p> Similar Items You Might Also Like</p>
-      <img id="icon-img" src="${prod.thumbnail}" alt="">
+      <div class="flex">
+      <img class="single" id="single_product" src="${produ.thumbnail}" alt="">
+      </div>
 
       `
       mealContaine.appendChild(mealCar);
@@ -67,7 +73,19 @@ function DisplaySimilarProduct(prod){
 
 }
 
-// display the picture
+// ToAdd Function
+allAdToCArdBtns.addEventListener("click", () => {
+  const selectItem = document.getElementById("items-selected");
+  console.log("add to cart clicked")
+  const prevItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+  const isFound = prevItems.find((item) => +item.id === +selectItem);
+  const name = e.target.dataset.name; // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+
+  console.log({name})
+  
+})
+
+
 
 
 
