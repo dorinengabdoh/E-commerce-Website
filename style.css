@@ -793,3 +793,85 @@ textarea {
 .checkout:hover {
   cursor: pointer;
 }
+
+/* payemnt */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.payment-form {
+  max-width: 40vw;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 30px 200px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#card-number, #products {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.hello {
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  width: 208px;
+  box-shadow: #0b0b0b;
+  margin: 0 auto;
+}
+
+.total {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  text-align: center;
+  display: flex;
+  gap: 2rem;
+}
+
+h2{
+  padding-bottom: 2rem;
+  text-align: center;
+  font-size: 32px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#name,#address, #email {
+  width: 28rem ;
+}
+
+#total-amount{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
