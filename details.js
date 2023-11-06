@@ -1,30 +1,30 @@
-const data = window.location.search;
-const urlParam = new URLSearchParams(data);
-const productId = urlParam.get("id");
-const allAdToCArdBtns = document.querySelector(".addd");
+import { navbar } from './main.js'
+import { displayallproducts } from './api.js'
+const data = window.location.search
+const urlParam = new URLSearchParams(data)
+const productId = urlParam.get('id')
+const allAdToCArdBtns = document.querySelector('.addd')
 
-const dataCategory = window.location.search;
-const category = new URLSearchParams(dataCategory);
-const categoryId = category.get("category");
-import { navbar } from "./main.js";
-import { displayallproducts } from "./api.js";
+const dataCategory = window.location.search
+const category = new URLSearchParams(dataCategory)
+const categoryId = category.get('category')
 
-const container1 = document.querySelector(".all");
+const container1 = document.querySelector('.all')
 
-if (container1) container1.innerHTML = navbar();
+if (container1) container1.innerHTML = navbar()
 
 const picture = await displayallproducts().then((Response) => {
-  console.log(Response);
-  displaydetailsPicture(Response);
-  DisplaySimilarProduct(Response);
-});
+  displaydetailsPicture(Response)
+  DisplaySimilarProduct(Response)
+  StoreProduct(Response)
+})
 
-function displaydetailsPicture(pict) {
-  const mealContainer = document.querySelector(".details-picture");
+function displaydetailsPicture (pict) {
+  const mealContainer = document.querySelector('.details-picture')
   pict?.forEach((product) => {
     if (productId == product.id) {
-      const mealCard = document.createElement("div");
-      mealCard.classList.add(".pict");
+      const mealCard = document.createElement('div')
+      mealCard.classList.add('.pict')
       mealCard.innerHTML = `
     <img id="pict_detail" src="${product.thumbnail}" />
     <div class="image">
@@ -43,37 +43,37 @@ function displaydetailsPicture(pict) {
     <p id="desc">Product Description</p>
     <p class="deux">${product.description}</p>
     </div>
-    `;
-      mealContainer.appendChild(mealCard);
+    `
+      mealContainer.appendChild(mealCard)
     }
-  });
+  })
 }
 // categoty
-function DisplaySimilarProduct(prod) {
-  const mealContaine = document.querySelector(".similar");
+function DisplaySimilarProduct (prod) {
+  const mealContaine = document.querySelector('.similar')
   prod?.forEach((produ) => {
     if (categoryId == produ.category) {
-      const mealCar = document.createElement("div");
-      mealCar.classList.add(".sim");
-      console.log(produ.id);
+      const mealCar = document.createElement('div')
+      mealCar.classList.add('.sim')
+      console.log(produ.id)
       mealCar.innerHTML = `
       <div class="flex">
       <img class="single" id="single_product" src="${produ.thumbnail}" alt="">
       </div>
-
-      `;
-      mealContaine.appendChild(mealCar);
+      `
+      mealContaine.appendChild(mealCar)
     }
-  });
+  })
 }
 
 // ToAdd Function
-allAdToCArdBtns.addEventListener("click", () => {
-  const selectItem = document.getElementById("items-selected");
-  console.log("add to cart clicked");
-  const prevItems = JSON.parse(localStorage.getItem("cardItems")) || [];
-  const isFound = prevItems.find((item) => +item.id === +selectItem);
-  const name = e.target.dataset.name; // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+allAdToCArdBtns.onclick = StoreProduct
 
-  console.log({ name });
-});
+function StoreProduct (product) {
+  const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
+  const update = [
+    ...prevItems,
+    product.find((item) => +item.id === +productId)
+  ]
+  localStorage.setItem('cardItems', JSON.stringify(update))
+}

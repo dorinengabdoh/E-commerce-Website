@@ -1,21 +1,22 @@
-import { displayallproducts, allCategories, categorydisplay } from "./api.js";
+import { displayallproducts, allCategories, categorydisplay } from './api.js'
 
-const getJson = await allCategories();
-let productrender = [];
+const getJson = await allCategories()
+let productrender = []
 
-if (displayallproducts)
+if (displayallproducts) {
   displayallproducts().then((res) => {
-    productrender = res;
-    displayCards(productrender);
-  });
+    productrender = res
+    displayCards(productrender)
+  })
+}
 
-console.log({ productrender });
+console.log({ productrender })
 
 // const category = document.getElementById('category')
 
-export function navbar() {
-  const container1 = document.querySelector(".container1");
-  if (container1)
+export function navbar () {
+  const container1 = document.querySelector('.container1')
+  if (container1) {
     container1.innerHTML = ` <div class="title">
   <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
   <div class="navlinks">
@@ -48,63 +49,64 @@ export function navbar() {
   </div>
 </div>
 
-`;
+`
+  }
   // allCategories (category)
 }
 
-navbar();
+navbar()
 
 // counter selection
 
-export function setupCounter(card) {
-  const addtocard = document.querySelectorAll(".addtocard");
-  let counter = document.getElementById("items-selected");
-  counter = 0;
+export function setupCounter (card) {
+  const addtocard = document.querySelectorAll('.addtocard')
+  let counter = document.getElementById('items-selected')
+  counter = 0
   const setCounter = (count) => {
-    counter = count;
-    console.log(counter);
-  };
-  addtocard.addEventListener("click", () => setCounter(counter + 1));
-  setCounter(0);
-  console.log(counter);
+    counter = count
+    console.log(counter)
+  }
+  addtocard.addEventListener('click', () => setCounter(counter + 1))
+  setCounter(0)
+  console.log(counter)
 }
 
 // map and display cat
-let category = document.getElementById("category");
+let category = document.getElementById('category')
 category.innerHTML = getJson.map(
   (item) => `
  <option id="category">${item}</option>`
-);
+)
 
-let selectedCategory = "";
+let selectedCategory = ''
 
-category.addEventListener("input", async (e) => {
-  category = e.target.value;
-  selectedCategory = category;
+category.addEventListener('input', async (e) => {
+  category = e.target.value
+  selectedCategory = category
 
-  const res = await categorydisplay(category);
-  productrender = res?.products;
+  const res = await categorydisplay(category)
+  productrender = res?.products
 
-  console.log({ category, productrender, res });
+  console.log({ category, productrender, res })
 
-  displayCards(productrender);
+  displayCards(productrender)
   // top.style.display = "none"
-  console.log(selectedCategory);
+  console.log(selectedCategory)
 
-  return selectedCategory;
-});
+  return selectedCategory
+})
 
-if (selectedCategory !== "") {
+if (selectedCategory !== '') {
   productrender = productrender.filter(
     (item) => item.category === selectedCategory
-  );
+  )
 }
 
-//display avatar section
+// display avatar section
 
-export function avatarSection() {
-  const container2 = document.querySelector(".container2");
-  if (container2)
+export function avatarSection () {
+  const container2 = document.querySelector('.container2')
+  if (container2) {
     container2.innerHTML = `<div class="buy-now-section">
   <div class="grap-50">
     <h1 id="headphone">Grap up to 50% off 
@@ -114,15 +116,16 @@ export function avatarSection() {
   <div class="avatar">
   <img src="./image/Slider 1.png" alt="" id="img">
   </div>
-</div>`;
+</div>`
+  }
 }
-avatarSection();
+avatarSection()
 
-//display buttons section
+// display buttons section
 
-export function buttons() {
-  const container3 = document.querySelector(".container3");
-  if (container3)
+export function buttons () {
+  const container3 = document.querySelector('.container3')
+  if (container3) {
     container3.innerHTML = ` <div class="dropdown-buttons">
   <div class="price">
  <select id="headers"><option id="headers"> HeadePhone-type</option></select>
@@ -136,50 +139,39 @@ export function buttons() {
 <div class="headphone-type">
 <select id="headerss"><option id="headers"> HeadePhone-type</option></select>
 </div>
-</div>`;
+</div>`
+  }
 }
 
-buttons();
+buttons()
 
 // const container4 = document.querySelector('.container4')
 
-export function displayCards(fetchData) {
-  const top = document.querySelector(".container4");
-  top.innerHTML = "";
+export function displayCards (fetchData) {
+  const top = document.querySelector('.container4')
+  top.innerHTML = ''
 
-  const testFunction = () => {
-    alert("hello");
-  };
-    // fucntion toAdd
+  // fucntion toAdd
   const addListenersToAddToCardButton = () => {
-    const allAdToCArdBtns = document.querySelectorAll(".addtocard");
-    const selectItem = document.getElementById("items-selected");
+    const allAdToCArdBtns = document.querySelectorAll('.addtocard')
+    const selectItem = document.getElementById('items-selected')
 
     allAdToCArdBtns.forEach((card) => {
-      card.addEventListener("click", (e) => {
-        const imageId = e.target.dataset.imageid; // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
-
-        console.log({imageId})
-        
-        const prevItems = JSON.parse(localStorage.getItem("cardItems")) || [];
-        const isFound = prevItems.find((item) => +item.id === +imageId); // +"2" === parseInt("2");
-
-        if(isFound)  { // then remove existing item from sessionStorage;
-          const update = prevItems.filter((item) => +item.id !== +imageId);
-          selectItem.innerHTML = update.length;
-
-          localStorage.setItem("cardItems", JSON.stringify(update));
-        } else {
-          const update = [...prevItems, fetchData.find((item) => +item.id === +imageId)]
-          selectItem.innerHTML = update.length;
-          localStorage.setItem("cardItems", JSON.stringify(update))
-        }
-      });
-    });
-  };
+      card.addEventListener('click', (e) => {
+        const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+        const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
+        const update = [
+          ...prevItems,
+          fetchData.find((item) => +item.id === +imageId)
+        ]
+        localStorage.setItem('cardItems', JSON.stringify(update))
+        selectItem.innerHTML = update.length
+      })
+    })
+  }
 
   fetchData?.forEach((item) => {
-    if (top)
+    if (top) {
       top.innerHTML += `
     <div class="top">
       <div class="subcard" id="subcards">
@@ -208,15 +200,16 @@ export function displayCards(fetchData) {
         <button id="shortlist">Short List</button>
       </div>
     </div>
-  `;
-  });
+  `
+    }
+  })
 
-  addListenersToAddToCardButton();
+  addListenersToAddToCardButton()
 }
 
-export function previews() {
-  const container5 = document.querySelector(".container5");
-  if (container5)
+export function previews () {
+  const container5 = document.querySelector('.container5')
+  if (container5) {
     container5.innerHTML = `<div class="previews">
   <button id="previews">Preview</button>
   <button id="previews">1</button>
@@ -227,22 +220,24 @@ export function previews() {
   <button id="previews">6</button>
   <button id="previews">7</button>
   <button id="previews">Next</button>
-</div>`;
+</div>`
+  }
 }
 
-previews();
+previews()
 
-export function footer() {
-  const container6 = document.querySelector(".container6");
-  if (container6)
+export function footer () {
+  const container6 = document.querySelector('.container6')
+  if (container6) {
     container6.innerHTML = `<div class="footer">
   <h2 id="footer">Footer</h2>
-</div>`;
+</div>`
+  }
 }
 
-footer();
+footer()
 
 // const subcard =document.querySelector('.subcard')
-document.querySelector("#app").innerHTML;
+document.querySelector('#app').innerHTML
 
 // setupCounter(document.querySelector('#counter'))
