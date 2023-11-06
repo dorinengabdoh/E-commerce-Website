@@ -790,12 +790,19 @@ textarea {
   background-color: #040c22;
   color: #fff;
   margin-top: 3rem;
-  margin-inline: 45rem;
+  margin-inline: 45%;
   margin-bottom: 4rem;
   font-size: 20px;
+  font-weight: bold;
 }
 
 .checkout:hover {
+  cursor: pointer;
+}
+
+.remove {
+  font-weight: bold;
+  background-color: #b9cddf;
   cursor: pointer;
 }
 

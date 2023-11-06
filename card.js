@@ -30,9 +30,26 @@ getCardItem.map(element => {
       <p id="number">(121)</p>
     </div>
     <div class="date">
-      <button id="shortlist">Short List</button>
+      <button id="shortlist" data-id ="${element.id}" class="remove">Remove</button>
     </div>
   </div>
-`
+`;
+
+const itemsInLocalStorage = JSON.parse(localStorage.getItem("cardItems")) || [];
+document.getElementById("shortlist").addEventListener('click', (e) => {
+  console.log("hello");
+  const Id = e.target.dataset.id
+  console.log(Id);
+  const indexASupprimer = cardItems.find(item => item.id === Id);
+  console.log(indexASupprimer);
+  for (let i = 0; i < cardItems.length; i++) {
+    itemsInLocalStorage.splice(indexASupprimer, Id);
+    localStorage.setItem("cardItems", JSON.stringify(itemsInLocalStorage));
+    console.log("successfully remove");
   }
+});
+}
+
 })
+
+

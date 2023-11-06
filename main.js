@@ -239,7 +239,4 @@ export function footer () {
 
 footer()
 
-// const subcard =document.querySelector('.subcard')
 document.querySelector('#app').innerHTML
-
-// setupCounter(document.querySelector('#counter'))
