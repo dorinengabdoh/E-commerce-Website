@@ -784,16 +784,27 @@ textarea {
 }
 
 .checkout {
-  padding: 5px;
+  padding: 15px 20px;
   border-radius: 8px;
   border: none;
   background-color: #040c22;
   color: #fff;
-
+  margin-top: 3rem;
+  margin-inline: 45rem;
+  margin-bottom: 4rem;
+  font-size: 20px;
 }
 
 .checkout:hover {
   cursor: pointer;
+}
+
+.addto {
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 43px;
+  font-family: 'Times New Roman', Times, serif;
+  padding-bottom: 2rem;
 }
 
 /* payemnt */
@@ -868,7 +879,7 @@ form {
 }
 
 #name,#address, #email {
-  width: 28rem ;
+  width: 98% ;
 }
 
 #total-amount{

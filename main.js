@@ -15,7 +15,9 @@ console.log({ productrender })
 // const category = document.getElementById('category')
 
 export function navbar () {
-  const container1 = document.querySelector('.container1')
+  const container1 = document.querySelector('.container1');
+  const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+
   if (container1) {
     container1.innerHTML = ` <div class="title">
   <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
@@ -33,7 +35,7 @@ export function navbar () {
 
 <div class="basket">
   <button id="basketimg">
-    <span id="items-selected"><a href="./card.html" class="hover">0</a></span>
+    <span id="items-selected"><a href="./card.html" id="hover" class="hover">${cardItems.length}</a></span>
     <i id="icon1" class="fa-solid fa-bag-shopping"></i>
   </button>
   <button id="bell">

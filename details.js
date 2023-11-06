@@ -4,6 +4,7 @@ const data = window.location.search
 const urlParam = new URLSearchParams(data)
 const productId = urlParam.get('id')
 const allAdToCArdBtns = document.querySelector('.addd')
+let currentProduct = {}
 
 const dataCategory = window.location.search
 const category = new URLSearchParams(dataCategory)
@@ -14,15 +15,16 @@ const container1 = document.querySelector('.all')
 if (container1) container1.innerHTML = navbar()
 
 const picture = await displayallproducts().then((Response) => {
+  console.log({Response});
   displaydetailsPicture(Response)
   DisplaySimilarProduct(Response)
-  StoreProduct(Response)
 })
 
 function displaydetailsPicture (pict) {
   const mealContainer = document.querySelector('.details-picture')
   pict?.forEach((product) => {
     if (productId == product.id) {
+      currentProduct = product;
       const mealCard = document.createElement('div')
       mealCard.classList.add('.pict')
       mealCard.innerHTML = `
@@ -67,13 +69,17 @@ function DisplaySimilarProduct (prod) {
 }
 
 // ToAdd Function
-allAdToCArdBtns.onclick = StoreProduct
+allAdToCArdBtns.onclick = () => StoreProduct();
 
-function StoreProduct (product) {
+function StoreProduct () {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
   const update = [
     ...prevItems,
-    product.find((item) => +item.id === +productId)
-  ]
+    currentProduct
+  ];
   localStorage.setItem('cardItems', JSON.stringify(update))
+  const itemselected = document.getElementById('hover')
+ itemselected.innerHTML = update.length;
 }
+
+
