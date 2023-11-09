@@ -53,7 +53,6 @@ export function navbar () {
 
 `
   }
-  // allCategories (category)
 }
 
 navbar()
