@@ -8,9 +8,10 @@ if (displayallproducts) {
     productrender = res
     displayCards(productrender)
   })
+  console.log({ productrender })
+
 }
 
-console.log({ productrender })
 
 // const category = document.getElementById('category')
 
@@ -212,29 +213,29 @@ export function previews () {
   const container5 = document.querySelector('.container5')
   if (container5) {
     container5.innerHTML = `<div class="previews">
-  <button id="previews">Preview</button>
-  <button id="previews">1</button>
-  <button id="previews">2</button>
-  <button id="previews">3</button>
-  <button id="previews">4</button>
-  <button id="previews">5</button>
-  <button id="previews">6</button>
-  <button id="previews">7</button>
-  <button id="previews">8</button>
-  <button id="previews">9</button>
-  <button id="previews">10</button>
-  <button id="previews">Next</button>
+  <button id="previews" class="dataContainer">Preview</button>
+  <button id="previews" >1</button>
+  <button id="previews" >2</button>
+  <button id="previews" >3</button>
+  <button id="previews" >4</button>
+  <button id="previews" >5</button>
+  <button id="previews" >6</button>
+  <button id="previews" >7</button>
+  <button id="previews" >8</button>
+  <button id="previews" >9</button>
+  <button id="previews" >10</button>
+  <button id="previews" class="paginationButtons">Next</button>
 </div>`
   }
 }
 
 previews()
 
-const data = []; // Votre liste de données à paginer (remplie de données pour l'exemple)
-const itemsPerPage = 10; // Nombre d'éléments par page
+const data = await displayallproducts(); 
+const itemsPerPage = 10;
 
-const dataContainer = document.getElementById('dataContainer');
-const paginationButtons = document.getElementById('paginationButtons');
+const dataContainer = document.querySelector('dataContainer');
+const paginationButtons = document.querySelector('paginationButtons');
 
 let currentPage = 1;
 
