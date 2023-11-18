@@ -220,12 +220,57 @@ export function previews () {
   <button id="previews">5</button>
   <button id="previews">6</button>
   <button id="previews">7</button>
+  <button id="previews">8</button>
+  <button id="previews">9</button>
+  <button id="previews">10</button>
   <button id="previews">Next</button>
 </div>`
   }
 }
 
 previews()
+
+const data = []; // Votre liste de données à paginer (remplie de données pour l'exemple)
+const itemsPerPage = 10; // Nombre d'éléments par page
+
+const dataContainer = document.getElementById('dataContainer');
+const paginationButtons = document.getElementById('paginationButtons');
+
+let currentPage = 1;
+
+function displayData(page) {
+  dataContainer.innerHTML = '';
+
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = data.slice(startIndex, endIndex);
+
+  paginatedData.forEach(item => {
+    const listItem = document.createElement('div');
+    listItem.textContent = item;
+    dataContainer.appendChild(listItem);
+  });
+}
+
+function renderPaginationButtons() {
+  paginationButtons.innerHTML = '';
+
+  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  for (let i = 1; i <= pageCount; i++) {
+    const button = document.createElement('button');
+    button.textContent = i;
+    button.addEventListener('click', () => {
+      currentPage = i;
+      displayData(currentPage);
+    });
+    paginationButtons.appendChild(button);
+  }
+}
+
+displayData(currentPage);
+renderPaginationButtons();
+
 
 export function footer () {
   const container6 = document.querySelector('.container6')
