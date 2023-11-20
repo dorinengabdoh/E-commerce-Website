@@ -34,20 +34,15 @@ getCardItem.map(element => {
     </div>
   </div>
 `;
-
+// console.log(data-id);
 const itemsInLocalStorage = JSON.parse(localStorage.getItem("cardItems")) || [];
-document.getElementById("shortlist").addEventListener('click', (e) => {
-  console.log("hello");
-  const Id = e.target.dataset.id
-  console.log(Id);
-  const indexASupprimer = cardItems.find(item => item.id === Id);
-  console.log(indexASupprimer);
-  for (let i = 0; i < cardItems.length; i++) {
-    itemsInLocalStorage.splice(indexASupprimer, Id);
-    localStorage.setItem("cardItems", JSON.stringify(itemsInLocalStorage));
-    console.log("successfully remove");
-  }
-});
+const removes = document.querySelectorAll(".remove");
+removes.forEach((remove)=> {
+  remove.addEventListener('click', () => {
+    console.log("click reussi");
+    
+  });
+})
 }
 
 })

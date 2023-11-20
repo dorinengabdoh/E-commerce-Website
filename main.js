@@ -229,48 +229,48 @@ export function previews () {
   }
 }
 
-previews()
+// previews()
 
-const data = await displayallproducts(); 
-const itemsPerPage = 10;
+// const data = await displayallproducts(); 
+// const itemsPerPage = 10;
 
-const dataContainer = document.querySelector('dataContainer');
-const paginationButtons = document.querySelector('paginationButtons');
+// const dataContainer = document.querySelector('dataContainer');
+// const paginationButtons = document.querySelector('paginationButtons');
 
-let currentPage = 1;
+// let currentPage = 1;
 
-function displayData(page) {
-  dataContainer.innerHTML = '';
+// function displayData(page) {
+//   dataContainer.innerHTML = '';
 
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedData = data.slice(startIndex, endIndex);
+//   const startIndex = (page - 1) * itemsPerPage;
+//   const endIndex = startIndex + itemsPerPage;
+//   const paginatedData = data.slice(startIndex, endIndex);
 
-  paginatedData.forEach(item => {
-    const listItem = document.createElement('div');
-    listItem.textContent = item;
-    dataContainer.appendChild(listItem);
-  });
-}
+//   paginatedData.forEach(item => {
+//     const listItem = document.createElement('div');
+//     listItem.textContent = item;
+//     dataContainer.appendChild(listItem);
+//   });
+// }
 
-function renderPaginationButtons() {
-  paginationButtons.innerHTML = '';
+// function renderPaginationButtons() {
+//   paginationButtons.innerHTML = '';
 
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+//   const pageCount = Math.ceil(data.length / itemsPerPage);
 
-  for (let i = 1; i <= pageCount; i++) {
-    const button = document.createElement('button');
-    button.textContent = i;
-    button.addEventListener('click', () => {
-      currentPage = i;
-      displayData(currentPage);
-    });
-    paginationButtons.appendChild(button);
-  }
-}
+//   for (let i = 1; i <= pageCount; i++) {
+//     const button = document.createElement('button');
+//     button.textContent = i;
+//     button.addEventListener('click', () => {
+//       currentPage = i;
+//       displayData(currentPage);
+//     });
+//     paginationButtons.appendChild(button);
+//   }
+// }
 
-displayData(currentPage);
-renderPaginationButtons();
+// displayData(currentPage);
+// renderPaginationButtons();
 
 
 export function footer () {
