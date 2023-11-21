@@ -1,10 +1,18 @@
-const getCardItem = JSON.parse(localStorage.getItem('cardItems'))
+const getCardItem = JSON.parse(localStorage.getItem("cardItems"));
+const data = window.location.search;
+const urlParam = new URLSearchParams(data);
+const productId = urlParam.get("id");
+console.log(productId);
 
-console.log(getCardItem)
-const top = document.querySelector('.container4')
-top.innerHTML = ''
+console.log(getCardItem);
+const top = document.querySelector(".container4");
+top.innerHTML = "";
 
-getCardItem.map(element => {
+function relodValue() {
+  
+  
+}
+getCardItem.map((element) => {
   if (top) {
     top.innerHTML += `
   <div class="top">
@@ -34,17 +42,17 @@ getCardItem.map(element => {
     </div>
   </div>
 `;
-// console.log(data-id);
-const itemsInLocalStorage = JSON.parse(localStorage.getItem("cardItems")) || [];
-const removes = document.querySelectorAll(".remove");
-removes.forEach((remove)=> {
-  remove.addEventListener('click', () => {
-    console.log("click reussi");
-    
-  });
-})
-}
-
-})
-
-
+    // console.log(data-id);
+    const removes = document.querySelectorAll(".remove");
+    removes.forEach((remove) => {
+      remove.addEventListener("click", (e) => {
+        const getCardItem = JSON.parse(localStorage.getItem("cardItems"));
+        const id = +e.target.dataset.id;
+        console.log(id);
+        const removeValue = getCardItem.filter((item) => item.id !== id);
+        localStorage.setItem("cardItems", JSON.stringify(removeValue));
+        console.log(removeValue);
+      });
+    });
+  }
+});
