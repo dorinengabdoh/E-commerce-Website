@@ -1,4 +1,4 @@
-import { displayallproducts, allCategories, categorydisplay } from './api.js'
+import { displayallproducts, allCategories, categorydisplay, displayPageData } from './api.js'
 
 const getJson = await allCategories()
 let productrender = []
@@ -9,7 +9,6 @@ if (displayallproducts) {
     displayCards(productrender)
   })
   console.log({ productrender })
-
 }
 
 
@@ -137,7 +136,6 @@ export function buttons () {
   <select id="headers"><option id="headers">Material</option></select>
   <select id="headers"><option id="headers">Offer</option></select>
 </div>
-
 <div class="headphone-type">
 <select id="headerss"><option id="headers"> HeadePhone-type</option></select>
 </div>
@@ -214,22 +212,75 @@ export function previews () {
   if (container5) {
     container5.innerHTML = `<div class="previews">
   <button id="previews" class="dataContainer">Preview</button>
-  <button id="previews" >1</button>
-  <button id="previews" >2</button>
-  <button id="previews" >3</button>
-  <button id="previews" >4</button>
-  <button id="previews" >5</button>
-  <button id="previews" >6</button>
-  <button id="previews" >7</button>
-  <button id="previews" >8</button>
-  <button id="previews" >9</button>
-  <button id="previews" >10</button>
+  <button id="previews" class="pageBtn" >1</button>
+  <button id="previews" class="pageBtn">2</button>
+  <button id="previews" class="pageBtn">3</button>
+  <button id="previews" class="pageBtn">4</button>
+  <button id="previews" class="pageBtn">5</button>
+  <button id="previews" class="pageBtn">6</button>
+  <button id="previews" class="pageBtn">7</button>
+  <button id="previews" class="pageBtn">8</button>
+  <button id="previews" class="pageBtn">9</button>
+  <button id="previews" class="pageBtn">10</button>
   <button id="previews" class="paginationButtons">Next</button>
 </div>`
   }
 }
 
-// previews()
+previews()
+
+export function displayPaginationBtns(paginationCount) {
+  const addEventListenersToAllPaginationBtns = () => {
+    const allPageBtn = document.querySelectorAll(".pageBtn");
+    allPageBtn.forEach((btn, i) => btn.onclick = () => {
+      console.log("i got clicked", i);
+      loadPageData(i);
+    });
+  }
+  const container5 = document.querySelector(".container5");
+  container5.innerHTML = "";
+  const previews = document.createElement("div");
+  previews.className = "previews";
+  previews.innerHTML = `<button id="previews">Previous</button>`
+  for (let i = 0; i < paginationCount; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.id = "previews";
+    pageBtn.className = "pageBtn";
+    pageBtn.innerHTML = i + 1; // not to start from zero;
+    console.log({ pageBtn });
+    previews.appendChild(pageBtn);
+  }
+  previews.innerHTML += `<button id="previews">Next</button>`;
+  container5.appendChild(previews);
+  addEventListenersToAllPaginationBtns()
+}
+
+const loadPageData = (pageIndx) => {
+  displayPageData(pageIndx)
+    .then((res) => {
+      productrender = res.products;
+      const paginationCount = Math.ceil(res.total / MAX_ITEMS_PER_PAGE);
+      displayCards(productrender);
+      displayPaginationBtns(paginationCount);
+    })
+    .catch((err) => console.error(err));
+loadPageData(0);
+
+for (let i = 0; i < paginationCount; i++) {
+  const pageBtn = document.createElement("button");
+  pageBtn.id = "previews";
+  pageBtn.className = "pageBtn";
+  pageBtn.innerHTML = i + 1; // not to start from zero;
+  console.log({ pageBtn });
+  previews.appendChild(pageBtn);
+}
+}
+
+
+
+
+
+
 
 // const data = await displayallproducts(); 
 // const itemsPerPage = 10;

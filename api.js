@@ -25,3 +25,11 @@ export async function displayallproducts () {
   console.log(targetdata)
   return targetdata
 }
+
+export  async function displayPageData (page=0) {
+  const products = `https://dummyjson.com/products?limit=${MAX_ITEMS_PER_PAGE}&skip=${page *MAX_ITEMS_PER_PAGE}`
+  const productdata = await fetch(products)
+  const data = await productdata.json()
+  console.log(data);
+  return  data;
+}
