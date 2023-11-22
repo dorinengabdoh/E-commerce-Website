@@ -5,25 +5,28 @@ const productId = urlParam.get("id");
 console.log(productId);
 
 console.log(getCardItem);
+
+
+
 const top = document.querySelector(".container4");
 top.innerHTML = "";
 
 function relodValue() {
-  
-  
+
+
 }
-getCardItem.map((element) => {
+getCardItem.map(function call(element) {
   if (top) {
     top.innerHTML += `
   <div class="top">
     <div class="subcard" id="subcards">
-      <a href="/details.html?id=${element.id}&category=${element.category}"><img src=${element.thumbnail} id="details-page"/></a>
+      <a href="/details.html?id=${element.item.id}&category=${element.item.category}"><img src=${element.item.thumbnail} id="details-page"/></a>
       <i class="fa-regular fa-heart"></i>
     </div>
 
     <div class="snikersprice">
-      <span id="snykers">${element.title}</span>
-      <span id="snykers-price">$${element.price}</span>
+      <span id="snykers">${element.item.title}</span>
+      <span id="snykers-price">$${element.item.price}</span>
     </div>
 
     <div class="shoes-available" data-name>
@@ -38,7 +41,8 @@ getCardItem.map((element) => {
       <p id="number">(121)</p>
     </div>
     <div class="date">
-      <button id="shortlist" data-id ="${element.id}" class="remove">Remove</button>
+      <input class="he" type="text" value="${element.total}"  >
+    <button id="shortlist" data-id ="${element.item.id}" class="remove">Remove</button>
     </div>
   </div>
 `;
@@ -56,3 +60,10 @@ getCardItem.map((element) => {
     });
   }
 });
+
+const objetRecupere = JSON.parse(localStorage.getItem('countValue'));
+console.log(objetRecupere);
+
+
+
+

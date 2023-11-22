@@ -159,13 +159,22 @@ export function displayCards (fetchData) {
     allAdToCArdBtns.forEach((card) => {
       card.addEventListener('click', (e) => {
         const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
-        const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
+        const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
+
+        if (prevItems.find(prod => +prod?.item.id === +imageId)) return;
+
+        const item = fetchData.find((gad) => +gad.id === +imageId);
+        const newProd = {
+          total: 1,
+          item,
+        }
+
         const update = [
           ...prevItems,
-          fetchData.find((item) => +item.id === +imageId)
+          newProd
         ]
-        localStorage.setItem('cardItems', JSON.stringify(update))
-        selectItem.innerHTML = update.length
+        localStorage.setItem('cardItems', JSON.stringify(update));
+        selectItem.innerHTML = update.length;
       })
     })
   }
@@ -207,6 +216,7 @@ export function displayCards (fetchData) {
   addListenersToAddToCardButton()
 }
 
+
 export function previews () {
   const container5 = document.querySelector('.container5')
   if (container5) {
@@ -228,100 +238,6 @@ export function previews () {
 }
 
 previews()
-
-export function displayPaginationBtns(paginationCount) {
-  const addEventListenersToAllPaginationBtns = () => {
-    const allPageBtn = document.querySelectorAll(".pageBtn");
-    allPageBtn.forEach((btn, i) => btn.onclick = () => {
-      console.log("i got clicked", i);
-      loadPageData(i);
-    });
-  }
-  const container5 = document.querySelector(".container5");
-  container5.innerHTML = "";
-  const previews = document.createElement("div");
-  previews.className = "previews";
-  previews.innerHTML = `<button id="previews">Previous</button>`
-  for (let i = 0; i < paginationCount; i++) {
-    const pageBtn = document.createElement("button");
-    pageBtn.id = "previews";
-    pageBtn.className = "pageBtn";
-    pageBtn.innerHTML = i + 1; // not to start from zero;
-    console.log({ pageBtn });
-    previews.appendChild(pageBtn);
-  }
-  previews.innerHTML += `<button id="previews">Next</button>`;
-  container5.appendChild(previews);
-  addEventListenersToAllPaginationBtns()
-}
-
-const loadPageData = (pageIndx) => {
-  displayPageData(pageIndx)
-    .then((res) => {
-      productrender = res.products;
-      const paginationCount = Math.ceil(res.total / MAX_ITEMS_PER_PAGE);
-      displayCards(productrender);
-      displayPaginationBtns(paginationCount);
-    })
-    .catch((err) => console.error(err));
-loadPageData(0);
-
-for (let i = 0; i < paginationCount; i++) {
-  const pageBtn = document.createElement("button");
-  pageBtn.id = "previews";
-  pageBtn.className = "pageBtn";
-  pageBtn.innerHTML = i + 1; // not to start from zero;
-  console.log({ pageBtn });
-  previews.appendChild(pageBtn);
-}
-}
-
-
-
-
-
-
-
-// const data = await displayallproducts(); 
-// const itemsPerPage = 10;
-
-// const dataContainer = document.querySelector('dataContainer');
-// const paginationButtons = document.querySelector('paginationButtons');
-
-// let currentPage = 1;
-
-// function displayData(page) {
-//   dataContainer.innerHTML = '';
-
-//   const startIndex = (page - 1) * itemsPerPage;
-//   const endIndex = startIndex + itemsPerPage;
-//   const paginatedData = data.slice(startIndex, endIndex);
-
-//   paginatedData.forEach(item => {
-//     const listItem = document.createElement('div');
-//     listItem.textContent = item;
-//     dataContainer.appendChild(listItem);
-//   });
-// }
-
-// function renderPaginationButtons() {
-//   paginationButtons.innerHTML = '';
-
-//   const pageCount = Math.ceil(data.length / itemsPerPage);
-
-//   for (let i = 1; i <= pageCount; i++) {
-//     const button = document.createElement('button');
-//     button.textContent = i;
-//     button.addEventListener('click', () => {
-//       currentPage = i;
-//       displayData(currentPage);
-//     });
-//     paginationButtons.appendChild(button);
-//   }
-// }
-
-// displayData(currentPage);
-// renderPaginationButtons();
 
 
 export function footer () {

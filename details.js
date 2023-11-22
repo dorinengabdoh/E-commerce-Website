@@ -1,4 +1,4 @@
-import { navbar } from './main.js'
+import { navbar, previews } from './main.js'
 import { displayallproducts } from './api.js'
 const data = window.location.search
 const urlParam = new URLSearchParams(data)
@@ -20,7 +20,7 @@ const picture = await displayallproducts().then((Response) => {
   DisplaySimilarProduct(Response)
 })
 
-function displaydetailsPicture (pict) {
+function displaydetailsPicture(pict) {
   const mealContainer = document.querySelector('.details-picture')
   pict?.forEach((product) => {
     if (productId == product.id) {
@@ -51,7 +51,7 @@ function displaydetailsPicture (pict) {
   })
 }
 // categoty
-function DisplaySimilarProduct (prod) {
+function DisplaySimilarProduct(prod) {
   const mealContaine = document.querySelector('.similar')
   prod?.forEach((produ) => {
     if (categoryId == produ.category) {
@@ -71,7 +71,7 @@ function DisplaySimilarProduct (prod) {
 // ToAdd Function
 allAdToCArdBtns.onclick = () => StoreProduct();
 
-function StoreProduct () {
+function StoreProduct() {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
   const update = [
     ...prevItems,
@@ -79,7 +79,67 @@ function StoreProduct () {
   ];
   localStorage.setItem('cardItems', JSON.stringify(update))
   const itemselected = document.getElementById('hover')
- itemselected.innerHTML = update.length;
+  itemselected.innerHTML = update.length;
 }
 
+// setcounter
 
+const getCurrentItems = () => {
+  const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
+  return prevItems.find(prod => +prod?.item.id === +productId);
+}
+// console.log({previews});
+
+const updateCounter = () => {
+  const counter = document.querySelector(".a5");
+
+  const currentItem = getCurrentItems();
+
+  if (!currentItem) return;
+
+  counter.value = currentItem.total;
+}
+
+updateCounter();
+
+
+function incrementerNombre() {
+  const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
+  const currentItem = getCurrentItems();
+
+  console.log('prevItems', prevItems, currentItem)
+
+  // const local_update = prevItems?.map((prod) => {
+  //   if (+prod.item.id === +currentItem.item.id) {
+  //     const updateProd = {
+  //       ...prod,
+  //       total: prod.total + 1,
+  //     }
+  //     return updateProd;
+  //   }
+
+  //   return prod;
+  // });
+
+
+  // console.log('local_update', local_update)
+
+  localStorage.setItem('cardItems', JSON.stringify(
+    prevItems?.map((prod) => {
+      if (+prod.item.id === +currentItem.item.id) {
+        const updateProd = {
+          ...prod,
+          total: prod.total + 1,
+        }
+
+        return updateProd;
+      }
+
+      return prod;
+    })
+  ));
+
+  // updateCounter();
+}
+
+allAdToCArdBtns.addEventListener('click', incrementerNombre);
