@@ -107,7 +107,7 @@ function incrementerNombre() {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
   const currentItem = getCurrentItems();
 
-  // console.log('prevItems', prevItems, currentItem)
+  console.log('prevItems', prevItems, currentItem)
 
   const local_update = prevItems?.map((prod) => {
     if (+prod.item.id === +currentItem.item.id) {
