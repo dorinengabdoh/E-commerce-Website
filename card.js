@@ -1,10 +1,10 @@
-const getCardItem = JSON.parse(localStorage.getItem("cardItems"));
+const getCurrentItems = JSON.parse(localStorage.getItem("cardItems"));
 const data = window.location.search;
 const urlParam = new URLSearchParams(data);
 const productId = urlParam.get("id");
 console.log(productId);
 
-console.log(getCardItem);
+console.log(getCurrentItems);
 
 
 
@@ -15,7 +15,7 @@ function relodValue() {
 
 
 }
-getCardItem.map(function call(element) {
+getCurrentItems.map(function call(element) {
   if (top) {
     top.innerHTML += `
   <div class="top">

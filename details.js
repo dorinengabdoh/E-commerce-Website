@@ -88,7 +88,6 @@ const getCurrentItems = () => {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
   return prevItems.find(prod => +prod?.item.id === +productId);
 }
-// console.log({previews});
 
 const updateCounter = () => {
   const counter = document.querySelector(".a5");
@@ -101,25 +100,26 @@ const updateCounter = () => {
 }
 
 updateCounter();
+console.log();
 
 
 function incrementerNombre() {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
   const currentItem = getCurrentItems();
 
-  console.log('prevItems', prevItems, currentItem)
+  // console.log('prevItems', prevItems, currentItem)
 
-  // const local_update = prevItems?.map((prod) => {
-  //   if (+prod.item.id === +currentItem.item.id) {
-  //     const updateProd = {
-  //       ...prod,
-  //       total: prod.total + 1,
-  //     }
-  //     return updateProd;
-  //   }
+  const local_update = prevItems?.map((prod) => {
+    if (+prod.item.id === +currentItem.item.id) {
+      const updateProd = {
+        ...prod,
+        total: prod.total + 1,
+      }
+      return updateProd;
+    }
 
-  //   return prod;
-  // });
+    return prod;
+  });
 
 
   // console.log('local_update', local_update)
@@ -139,7 +139,7 @@ function incrementerNombre() {
     })
   ));
 
-  // updateCounter();
+  updateCounter();
 }
 
 allAdToCArdBtns.addEventListener('click', incrementerNombre);
