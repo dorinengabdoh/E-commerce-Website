@@ -108,7 +108,6 @@ const handleNext = () => {
 }
 
 function displayPaginationBtns() {
-  // if (!productrender || productrender.length <= 0) return;
 
   const addEventListenersToAllPaginationBtns = () => {
     const allPageBtn = document.querySelectorAll(".pageBtn");

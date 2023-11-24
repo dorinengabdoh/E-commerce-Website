@@ -904,6 +904,9 @@ form {
 #total-amount {
   font-size: 20px;
   font-weight: bold;
+  margin-left: 15%;
+  border-radius: 6px;
+  padding-left: 2rem;
 }
 
 @media screen and (max-width: 1224px) {
