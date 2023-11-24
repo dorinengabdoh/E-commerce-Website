@@ -226,9 +226,10 @@ hr {
 }
 
 .container4 {
-  width: 100%;
+  margin-top: 8rem;
+  width: 90%;
   background-color: fff;
-  gap: 30px;
+  gap: 130px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -833,6 +834,10 @@ body {
   border-radius: 5px;
 }
 
+#billamount {
+  width: 98%;
+}
+
 .form-group {
   margin-bottom: 15px;
 }
@@ -871,7 +876,8 @@ label {
   padding-top: 10px;
   text-align: center;
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
+  align-items: center;
 }
 
 h2 {
@@ -904,9 +910,13 @@ form {
 #total-amount {
   font-size: 20px;
   font-weight: bold;
-  margin-left: 15%;
   border-radius: 6px;
-  padding-left: 2rem;
+  width: 50%;
+  padding-left: 1rem;
+}
+
+#items-selected {
+  font-size: 22px;
 }
 
 @media screen and (max-width: 1224px) {

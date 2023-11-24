@@ -24,7 +24,8 @@ export function displayCards(fetchData) {
         const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
         const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
 
-        if (prevItems.find(prod => +prod?.item.id === +imageId)) return;
+        if (prevItems.find(prod => +prod?.item.id === +imageId)) 
+        return;
 
         const item = fetchData.find((gad) => +gad.id === +imageId);
         const newProd = {

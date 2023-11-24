@@ -1,6 +1,9 @@
 import { navbar } from './main.js'
 
-const container1 = document.querySelector('.container1')
+const send = document.getElementById('send')
 
-if (container1)container1.innerHTML += navbar()
-console.log(container1)
+send.addEventListener('click', ()=>{
+  alert('successful add')
+})
+
+

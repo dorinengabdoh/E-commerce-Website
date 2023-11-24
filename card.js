@@ -2,14 +2,16 @@ const data = window.location.search;
 const urlParam = new URLSearchParams(data);
 const productId = urlParam.get("id");
 console.log(productId);
+const getCurrentItems = JSON.parse(localStorage.getItem("cardItems"));
+console.log(getCurrentItems);
 
 
 
 function displayItems() {
   const top = document.querySelector(".container4");
   top.innerHTML = "";
-
   const getCurrentItems = JSON.parse(localStorage.getItem("cardItems"));
+  console.log(getCurrentItems);
 
   getCurrentItems.map(function call(element) {
     if (top) {
@@ -43,7 +45,21 @@ function displayItems() {
       </div>
   `;
     }
+      // calculateTotal
+      let sum =0;
+    function calculateTotal () { 
+      for (let i = 0; i < getCurrentItems.length; i++) {
+        const Elements = getCurrentItems[i].item.price;
+        const total = element.total *Elements;
+        sum += total ;
+      }
+      console.log(sum,"i'm sum");
+      localStorage.setItem('Total', JSON.stringify(sum));
+    }
+    calculateTotal()
+
   });
+
 
   const removes = document.querySelectorAll(".remove");
   removes.forEach((remove) => {
@@ -51,7 +67,6 @@ function displayItems() {
       const getCardItem = JSON.parse(localStorage.getItem("cardItems"));
       console.log(getCardItem);
       const id = +e.target.dataset.id;
-      console.log(id);
       const removeValue = getCardItem.filter((prod) => prod.item.id !== id);
       localStorage.setItem("cardItems", JSON.stringify(removeValue));
       displayItems();
@@ -61,5 +76,7 @@ function displayItems() {
 }
 
 displayItems();
+
+ 
 
 
