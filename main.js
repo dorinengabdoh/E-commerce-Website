@@ -11,50 +11,6 @@ if (displayallproducts) {
   console.log({ productrender })
 }
 
-
-// const category = document.getElementById('category')
-
-// export function navbar () {
-//   const container1 = document.querySelector('.container1');
-//   const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
-
-//   if (container1) {
-//     container1.innerHTML = ` <div class="title">
-//   <a href="http://localhost:5173/"> <h1 id="fashionhub"><i(container1)>FashionHub</i></h1>  </a>
-//   <div class="navlinks">
-//     <span><select id="category">
-//     <option>shoes</option>
-//     <option>bags</option>
-//     <option>hats</option>
-//     </select></span>
-//     <span id="brand">Brand</span>
-//     <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
-//     <span id="faq">FAQ's</span>
-//   </div>
-// </div>
-
-// <div class="basket">
-//   <button id="basketimg">
-//     <span id="items-selected"><a href="./card.html" id="hover" class="hover">${cardItems.length}</a></span>
-//     <i id="icon1" class="fa-solid fa-bag-shopping"></i>
-//   </button>
-//   <button id="bell">
-//     <span id="bells"></span>
-//     <i id="icon2" class="fa-regular fa-bell"></i>
-//   </button>
-//   <div class="title-image">
-//     <img src="./image/IMG-20220225-WA0033.jpg">
-//     <div class="name">
-//       <span id="gmorning">Good morning</span>
-//       <span id="johnson">Scarlet Johnson</span>
-//     </div>
-//   </div>
-// </div>
-
-// `
-//   }
-// }
-
 export function navbar() {
   const container1 = document.querySelector(".container1");
   const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
@@ -193,7 +149,7 @@ buttons()
 
 export function displayCards (fetchData) {
   const top = document.querySelector('.container4')
-  top.innerHTML = ''
+  // top.innerHTML = ''
 
   // fucntion Addtocard
 
@@ -268,20 +224,33 @@ export function previews () {
   if (container5) {
     container5.innerHTML = `<div class="previews">
   <button id="previews" class="dataContainer">Preview</button>
-  <button id="previews" class="pageBtn" >1</button>
-  <button id="previews" class="pageBtn">2</button>
-  <button id="previews" class="pageBtn">3</button>
-  <button id="previews" class="pageBtn">4</button>
-  <button id="previews" class="pageBtn">5</button>
-  <button id="previews" class="pageBtn">6</button>
-  <button id="previews" class="pageBtn">7</button>
-  <button id="previews" class="pageBtn">8</button>
-  <button id="previews" class="pageBtn">9</button>
-  <button id="previews" class="pageBtn">10</button>
-  <button id="previews" class="paginationButtons">Next</button>
+    <ul>
+    <li id="previews" value="1"  onclick= "activeitemPg()" class="pageBtn-active" >1</button>
+    <li id="previews" value="2"  onclick= "activeitemPg()"class="pageBtn">2</li>
+    <li id="previews" value="3"  onclick= "activeitemPg()"class="pageBtn">3</li>
+    <li id="previews" value="4"  onclick= "activeitemPg()"class="pageBtn">4</li>
+    <li id="previews" value="5"  onclick= "activeitemPg()"class="pageBtn">5</li>
+    <li id="previews" value="6"  onclick= "activeitemPg()"class="pageBtn">6</li>
+    <li id="previews" value="7"  onclick= "activeitemPg()"class="pageBtn">7</li>
+    <li id="previews" value="8"  onclick= "activeitemPg()"class="pageBtn">8</li>
+    <li id="previews" value="9"  onclick= "activeitemPg()"class="pageBtn">9</li>
+    <li id="previews" value="10" onclick= "activeitemPg()" class="pageBtn">10</li>
+    </ul>
+  <button id="previews" class="paginationButtons">Next</alue="1"button>
 </div>`
   }
 }
+
+
+// paggination
+ const itemPg = document.getElementsByClassName(".pageBtn");
+ let currentValue = 1;
+
+ const activeitemPg = () =>{
+    for (1 of itemPg){
+      1.classList.remove("active");
+    }
+ }
 
 previews()
 

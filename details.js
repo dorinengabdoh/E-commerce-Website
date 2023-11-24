@@ -69,23 +69,9 @@ function DisplaySimilarProduct(prod) {
 }
 
 // ToAdd Function
-allAdToCArdBtns.onclick = () => StoreProduct();
-
-function StoreProduct() {
-  const prevItems = JSON.parse(localStorage.getItem('cardItems')) || []
-  const update = [
-    ...prevItems,
-    currentProduct
-  ];
-  localStorage.setItem('cardItems', JSON.stringify(update))
-  const itemselected = document.getElementById('hover')
-  itemselected.innerHTML = update.length;
-}
-
-// setcounter
-
 const getCurrentItems = () => {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
+  console.log({prevItems, productId});
   return prevItems.find(prod => +prod?.item.id === +productId);
 }
 
@@ -107,6 +93,8 @@ function incrementerNombre() {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
   const currentItem = getCurrentItems();
 
+  console.log({currentItem})
+
   console.log('prevItems', prevItems, currentItem)
 
   const local_update = prevItems?.map((prod) => {
@@ -124,20 +112,7 @@ function incrementerNombre() {
 
   // console.log('local_update', local_update)
 
-  localStorage.setItem('cardItems', JSON.stringify(
-    prevItems?.map((prod) => {
-      if (+prod.item.id === +currentItem.item.id) {
-        const updateProd = {
-          ...prod,
-          total: prod.total + 1,
-        }
-
-        return updateProd;
-      }
-
-      return prod;
-    })
-  ));
+  localStorage.setItem('cardItems', JSON.stringify(local_update));
 
   updateCounter();
 }
