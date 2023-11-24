@@ -1,4 +1,4 @@
-import { displayallproducts, allCategories, categorydisplay, displayPageData } from './api.js'
+import { displayallproducts, allCategories, categorydisplay} from './api.js'
 
 const getJson = await allCategories()
 let productrender = []
@@ -14,10 +14,50 @@ if (displayallproducts) {
 
 // const category = document.getElementById('category')
 
-export function navbar () {
-  const container1 = document.querySelector('.container1');
-  const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+// export function navbar () {
+//   const container1 = document.querySelector('.container1');
+//   const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
 
+//   if (container1) {
+//     container1.innerHTML = ` <div class="title">
+//   <a href="http://localhost:5173/"> <h1 id="fashionhub"><i(container1)>FashionHub</i></h1>  </a>
+//   <div class="navlinks">
+//     <span><select id="category">
+//     <option>shoes</option>
+//     <option>bags</option>
+//     <option>hats</option>
+//     </select></span>
+//     <span id="brand">Brand</span>
+//     <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
+//     <span id="faq">FAQ's</span>
+//   </div>
+// </div>
+
+// <div class="basket">
+//   <button id="basketimg">
+//     <span id="items-selected"><a href="./card.html" id="hover" class="hover">${cardItems.length}</a></span>
+//     <i id="icon1" class="fa-solid fa-bag-shopping"></i>
+//   </button>
+//   <button id="bell">
+//     <span id="bells"></span>
+//     <i id="icon2" class="fa-regular fa-bell"></i>
+//   </button>
+//   <div class="title-image">
+//     <img src="./image/IMG-20220225-WA0033.jpg">
+//     <div class="name">
+//       <span id="gmorning">Good morning</span>
+//       <span id="johnson">Scarlet Johnson</span>
+//     </div>
+//   </div>
+// </div>
+
+// `
+//   }
+// }
+
+export function navbar() {
+  const container1 = document.querySelector(".container1");
+  const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
   if (container1) {
     container1.innerHTML = ` <div class="title">
   <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
@@ -32,10 +72,9 @@ export function navbar () {
     <span id="faq">FAQ's</span>
   </div>
 </div>
-
 <div class="basket">
   <button id="basketimg">
-    <span id="items-selected"><a href="./card.html" id="hover" class="hover">${cardItems.length}</a></span>
+    <a href="./card.html" id="hover" class="hover"><span id="items-selected"></span></a>
     <i id="icon1" class="fa-solid fa-bag-shopping"></i>
   </button>
   <button id="bell">
@@ -50,10 +89,17 @@ export function navbar () {
     </div>
   </div>
 </div>
-
-`
+`;
   }
-}
+  var cardItemsLength = cardItems.length;
+  // Update the content of the anchor tag
+  var spanElement = document.getElementById("items-selected");
+    if (cardItemsLength > 0) {
+      spanElement.textContent = cardItemsLength;
+    } else {
+      spanElement.textContent = "0"; // or any other default value if desired
+    }
+  }
 
 navbar()
 
@@ -145,13 +191,12 @@ export function buttons () {
 
 buttons()
 
-// const container4 = document.querySelector('.container4')
-
 export function displayCards (fetchData) {
   const top = document.querySelector('.container4')
   top.innerHTML = ''
 
-  // fucntion toAdd
+  // fucntion Addtocard
+
   const addListenersToAddToCardButton = () => {
     const allAdToCArdBtns = document.querySelectorAll('.addtocard')
     const selectItem = document.getElementById('items-selected')
@@ -164,6 +209,7 @@ export function displayCards (fetchData) {
         if (prevItems.find(prod => +prod?.item.id === +imageId)) return;
 
         const item = fetchData.find((gad) => +gad.id === +imageId);
+        console.log(fetchData,"im the fecth data");
         const newProd = {
           total: 1,
           item,

@@ -51,6 +51,7 @@ getCurrentItems.map(function call(element) {
     removes.forEach((remove) => {
       remove.addEventListener("click", (e) => {
         const getCardItem = JSON.parse(localStorage.getItem("cardItems"));
+        console.log(getCardItem);
         const id = +e.target.dataset.id;
         console.log(id);
         const removeValue = getCardItem.filter((item) => item.id !== id);
@@ -61,8 +62,6 @@ getCurrentItems.map(function call(element) {
   }
 });
 
-const objetRecupere = JSON.parse(localStorage.getItem('countValue'));
-console.log(objetRecupere);
 
 
 
