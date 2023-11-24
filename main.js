@@ -24,8 +24,8 @@ export function displayCards(fetchData) {
         const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
         const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
 
-        if (prevItems.find(prod => +prod?.item.id === +imageId)) 
-        return;
+        if (prevItems.find(prod => +prod?.item.id === +imageId))
+          return;
 
         const item = fetchData.find((gad) => +gad.id === +imageId);
         const newProd = {
@@ -195,7 +195,7 @@ export function navbar() {
   <button id="basketimg">
     <a href="./card.html" id="hover" class="hover"><span id="items-selected"></span></a>
     <i class="bi-cart"></i>
-    </button>
+  </button>
   <button id="bell">
     <span id="bells"></span>
     <i id="icon2" class="fa-regular fa-bell"></i>
