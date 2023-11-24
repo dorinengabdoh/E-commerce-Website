@@ -384,8 +384,8 @@ hr {
   cursor: pointer;
 }
 
-#previews:hover {
-  background-color: #f4e8f3;
+#previews.current_page {
+  background-color: #db09ee6e;
 }
 
 .container6 {
@@ -922,5 +922,5 @@ form {
   #contact{
     padding-top: 2rem;
   }
-  
+
 }

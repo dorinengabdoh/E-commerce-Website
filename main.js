@@ -1,155 +1,17 @@
-import { displayallproducts, allCategories, categorydisplay} from './api.js'
+import { displayallproducts, allCategories, categorydisplay } from './api.js'
 
 const getJson = await allCategories()
 let productrender = []
+const ITEMS_PER_PAGE = 12;
 
-if (displayallproducts) {
-  displayallproducts().then((res) => {
-    productrender = res
-    displayCards(productrender)
-  })
-  console.log({ productrender })
-}
+let current_page = 0;
 
-export function navbar() {
-  const container1 = document.querySelector(".container1");
-  const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
-  if (container1) {
-    container1.innerHTML = ` <div class="title">
-  <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
-  <div class="navlinks">
-    <span><select id="category">
-    <option>shoes</option>
-    <option>bags</option>
-    <option>hats</option>
-    </select></span>
-    <span id="brand">Brand</span>
-    <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
-    <span id="faq">FAQ's</span>
-  </div>
-</div>
-<div class="basket">
-  <button id="basketimg">
-    <a href="./card.html" id="hover" class="hover"><span id="items-selected"></span></a>
-    <i id="icon1" class="fa-solid fa-bag-shopping"></i>
-  </button>
-  <button id="bell">
-    <span id="bells"></span>
-    <i id="icon2" class="fa-regular fa-bell"></i>
-  </button>
-  <div class="title-image">
-    <img src="./image/IMG-20220225-WA0033.jpg">
-    <div class="name">
-      <span id="gmorning">Good morning</span>
-      <span id="johnson">Scarlet Johnson</span>
-    </div>
-  </div>
-</div>
-`;
-  }
-  var cardItemsLength = cardItems.length;
-  // Update the content of the anchor tag
-  var spanElement = document.getElementById("items-selected");
-    if (cardItemsLength > 0) {
-      spanElement.textContent = cardItemsLength;
-    } else {
-      spanElement.textContent = "0"; // or any other default value if desired
-    }
-  }
 
-navbar()
+const getPaginationCount = () => Math.ceil(productrender.length / ITEMS_PER_PAGE)
 
-// counter selection
-
-export function setupCounter (card) {
-  const addtocard = document.querySelectorAll('.addtocard')
-  let counter = document.getElementById('items-selected')
-  counter = 0
-  const setCounter = (count) => {
-    counter = count
-    console.log(counter)
-  }
-  addtocard.addEventListener('click', () => setCounter(counter + 1))
-  setCounter(0)
-  console.log(counter)
-}
-
-// map and display cat
-let category = document.getElementById('category')
-category.innerHTML = getJson.map(
-  (item) => `
- <option id="category">${item}</option>`
-)
-
-let selectedCategory = ''
-
-category.addEventListener('input', async (e) => {
-  category = e.target.value
-  selectedCategory = category
-
-  const res = await categorydisplay(category)
-  productrender = res?.products
-
-  console.log({ category, productrender, res })
-
-  displayCards(productrender)
-  // top.style.display = "none"
-  console.log(selectedCategory)
-
-  return selectedCategory
-})
-
-if (selectedCategory !== '') {
-  productrender = productrender.filter(
-    (item) => item.category === selectedCategory
-  )
-}
-
-// display avatar section
-
-export function avatarSection () {
-  const container2 = document.querySelector('.container2')
-  if (container2) {
-    container2.innerHTML = `<div class="buy-now-section">
-  <div class="grap-50">
-    <h1 id="headphone">Grap up to 50% off 
-    <br />on Selected Headphone</h1>
-    <button id="buynow">Buy Now</button>
-  </div>
-  <div class="avatar">
-  <img src="./image/Slider 1.png" alt="" id="img">
-  </div>
-</div>`
-  }
-}
-avatarSection()
-
-// display buttons section
-
-export function buttons () {
-  const container3 = document.querySelector('.container3')
-  if (container3) {
-    container3.innerHTML = ` <div class="dropdown-buttons">
-  <div class="price">
- <select id="headers"><option id="headers"> HeadePhone-type</option></select>
-  <select id="headers"><option id="headers">Price</option></select>
-  <select id="headers"><option id="headers">Review</option></select>
-  <select id="headers"><option id="headers">Color</option></select>
-  <select id="headers"><option id="headers">Material</option></select>
-  <select id="headers"><option id="headers">Offer</option></select>
-</div>
-<div class="headphone-type">
-<select id="headerss"><option id="headers"> HeadePhone-type</option></select>
-</div>
-</div>`
-  }
-}
-
-buttons()
-
-export function displayCards (fetchData) {
+export function displayCards(fetchData) {
   const top = document.querySelector('.container4')
-  // top.innerHTML = ''
+  top.innerHTML = ''
 
   // fucntion Addtocard
 
@@ -165,7 +27,6 @@ export function displayCards (fetchData) {
         if (prevItems.find(prod => +prod?.item.id === +imageId)) return;
 
         const item = fetchData.find((gad) => +gad.id === +imageId);
-        console.log(fetchData,"im the fecth data");
         const newProd = {
           total: 1,
           item,
@@ -215,47 +76,241 @@ export function displayCards (fetchData) {
     }
   })
 
-  addListenersToAddToCardButton()
+  addListenersToAddToCardButton();
 }
 
+// LOADING PAGINATION DATA
+const loadPageData = (index) => {
+  current_page = index;
 
-export function previews () {
-  const container5 = document.querySelector('.container5')
-  if (container5) {
-    container5.innerHTML = `<div class="previews">
-  <button id="previews" class="dataContainer">Preview</button>
-    <ul>
-    <li id="previews" value="1"  onclick= "activeitemPg()" class="pageBtn-active" >1</button>
-    <li id="previews" value="2"  onclick= "activeitemPg()"class="pageBtn">2</li>
-    <li id="previews" value="3"  onclick= "activeitemPg()"class="pageBtn">3</li>
-    <li id="previews" value="4"  onclick= "activeitemPg()"class="pageBtn">4</li>
-    <li id="previews" value="5"  onclick= "activeitemPg()"class="pageBtn">5</li>
-    <li id="previews" value="6"  onclick= "activeitemPg()"class="pageBtn">6</li>
-    <li id="previews" value="7"  onclick= "activeitemPg()"class="pageBtn">7</li>
-    <li id="previews" value="8"  onclick= "activeitemPg()"class="pageBtn">8</li>
-    <li id="previews" value="9"  onclick= "activeitemPg()"class="pageBtn">9</li>
-    <li id="previews" value="10" onclick= "activeitemPg()" class="pageBtn">10</li>
-    </ul>
-  <button id="previews" class="paginationButtons">Next</alue="1"button>
+  console.log({ current_page })
+
+  const start_pos = index * ITEMS_PER_PAGE;
+  const end_pos = ITEMS_PER_PAGE;
+
+  const items_to_display = [...productrender].splice(start_pos, end_pos);
+
+  displayCards(items_to_display);
+}
+
+const handlePrev = () => {
+  if (current_page == 0) return;
+
+  loadPageData(current_page - 1);
+}
+
+const handleNext = () => {
+  const lastpage = getPaginationCount() - 1;
+
+  if (current_page == lastpage) return;
+
+  loadPageData(current_page + 1);
+}
+
+function displayPaginationBtns() {
+  // if (!productrender || productrender.length <= 0) return;
+
+  const addEventListenersToAllPaginationBtns = () => {
+    const allPageBtn = document.querySelectorAll(".pageBtn");
+    allPageBtn.forEach((btn, i, arr_btns) => btn.onclick = () => {
+      console.log("i got clicked");
+      loadPageData(i);
+
+      arr_btns.forEach(btn => {
+        btn.classList.remove('current_page');
+      });
+
+      btn.classList.add('current_page')
+    });
+  }
+
+  const paginationCount = getPaginationCount();
+
+
+  const container5 = document.querySelector(".container5");
+  container5.innerHTML = "";
+
+  const previews = document.createElement("div");
+  previews.className = "previews";
+
+  const prevBtn = document.createElement('button');
+  prevBtn.id = "previews";
+  prevBtn.innerHTML = "Previous";
+
+  previews.appendChild(prevBtn);
+
+  prevBtn.addEventListener('click', handlePrev); // to go back to prev page
+
+  for (let i = 0; i < paginationCount; i++) {
+    const pageBtn = document.createElement("button");
+    pageBtn.id = "previews";
+    pageBtn.className = "pageBtn";
+    pageBtn.innerHTML = i + 1;
+    console.log({ pageBtn });
+    previews.appendChild(pageBtn);
+  }
+
+  const nextBtn = document.createElement('button');
+  nextBtn.id = "previews";
+  nextBtn.innerHTML = "Next";
+  nextBtn.addEventListener('click', handleNext); // to go to next page
+
+  previews.appendChild(nextBtn);
+
+  container5.appendChild(previews);
+
+  addEventListenersToAllPaginationBtns();
+}
+
+// FETCHING DATA!
+
+if (displayallproducts) {
+  displayallproducts().then((res) => {
+    productrender = res
+    loadPageData(0); // to display first pagination data
+    displayPaginationBtns();
+  });
+
+  console.log({ productrender })
+}
+
+export function navbar() {
+  const container1 = document.querySelector(".container1");
+  const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+  if (container1) {
+    container1.innerHTML = ` <div class="title">
+  <a href="http://localhost:5173/"> <h1 id="fashionhub"><iif(container1)>FashionHub</iif></h1>  </a>
+  <div class="navlinks">
+    <span><select id="category">
+    <option>shoes</option>
+    <option>bags</option>
+    <option>hats</option>
+    </select></span>
+    <span id="brand">Brand</span>
+    <a href="./contact.html" id="contactdisplay"><span id="contact">Contact</span><a/>
+    <span id="faq">FAQ's</span>
+  </div>
+</div>
+<div class="basket">
+  <button id="basketimg">
+    <a href="./card.html" id="hover" class="hover"><span id="items-selected"></span></a>
+    <i id="icon1" class="fa-solid fa-bag-shopping"></i>
+  </button>
+  <button id="bell">
+    <span id="bells"></span>
+    <i id="icon2" class="fa-regular fa-bell"></i>
+  </button>
+  <div class="title-image">
+    <img src="./image/IMG-20220225-WA0033.jpg">
+    <div class="name">
+      <span id="gmorning">Good morning</span>
+      <span id="johnson">Scarlet Johnson</span>
+    </div>
+  </div>
+</div>
+`;
+  }
+  var cardItemsLength = cardItems.length;
+  // Update the content of the anchor tag
+  var spanElement = document.getElementById("items-selected");
+  if (cardItemsLength > 0) {
+    spanElement.textContent = cardItemsLength;
+  } else {
+    spanElement.textContent = "0"; // or any other default value if desired
+  }
+}
+
+navbar()
+
+// counter selection
+
+export function setupCounter(card) {
+  const addtocard = document.querySelectorAll('.addtocard')
+  let counter = document.getElementById('items-selected')
+  counter = 0
+  const setCounter = (count) => {
+    counter = count
+    console.log(counter)
+  }
+  addtocard.addEventListener('click', () => setCounter(counter + 1))
+  setCounter(0)
+  console.log(counter)
+}
+
+// map and display cat
+let category = document.getElementById('category')
+category.innerHTML = getJson.map(
+  (item) => `
+ <option id="category">${item}</option>`
+)
+
+let selectedCategory = ''
+
+category.addEventListener('input', async (e) => {
+  category = e.target.value
+  selectedCategory = category
+
+  const res = await categorydisplay(category)
+  productrender = res?.products
+
+  console.log({ category, productrender, res })
+
+  displayCards(productrender)
+  // top.style.display = "none"
+  console.log(selectedCategory)
+
+  return selectedCategory
+})
+
+if (selectedCategory !== '') {
+  productrender = productrender.filter(
+    (item) => item.category === selectedCategory
+  )
+}
+
+// display avatar section
+
+export function avatarSection() {
+  const container2 = document.querySelector('.container2')
+  if (container2) {
+    container2.innerHTML = `<div class="buy-now-section">
+  <div class="grap-50">
+    <h1 id="headphone">Grap up to 50% off 
+    <br />on Selected Headphone</h1>
+    <button id="buynow">Buy Now</button>
+  </div>
+  <div class="avatar">
+  <img src="./image/Slider 1.png" alt="" id="img">
+  </div>
+</div>`
+  }
+}
+avatarSection()
+
+// display buttons section
+
+export function buttons() {
+  const container3 = document.querySelector('.container3')
+  if (container3) {
+    container3.innerHTML = ` <div class="dropdown-buttons">
+  <div class="price">
+ <select id="headers"><option id="headers"> HeadePhone-type</option></select>
+  <select id="headers"><option id="headers">Price</option></select>
+  <select id="headers"><option id="headers">Review</option></select>
+  <select id="headers"><option id="headers">Color</option></select>
+  <select id="headers"><option id="headers">Material</option></select>
+  <select id="headers"><option id="headers">Offer</option></select>
+</div>
+<div class="headphone-type">
+<select id="headerss"><option id="headers"> HeadePhone-type</option></select>
+</div>
 </div>`
   }
 }
 
+buttons()
 
-// paggination
- const itemPg = document.getElementsByClassName(".pageBtn");
- let currentValue = 1;
-
- const activeitemPg = () =>{
-    for (1 of itemPg){
-      1.classList.remove("active");
-    }
- }
-
-previews()
-
-
-export function footer () {
+export function footer() {
   const container6 = document.querySelector('.container6')
   if (container6) {
     container6.innerHTML = `<div class="footer">

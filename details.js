@@ -1,4 +1,4 @@
-import { navbar, previews } from './main.js'
+import { navbar } from './main.js'
 import { displayallproducts } from './api.js'
 const data = window.location.search
 const urlParam = new URLSearchParams(data)
@@ -75,13 +75,13 @@ const getCurrentItems = () => {
   return prevItems.find(prod => +prod?.item.id === +productId);
 }
 
+
 const updateCounter = () => {
   const counter = document.querySelector(".a5");
 
   const currentItem = getCurrentItems();
 
   if (!currentItem) return;
-
   counter.value = currentItem.total;
 }
 
@@ -110,7 +110,6 @@ function incrementerNombre() {
   });
 
 
-  // console.log('local_update', local_update)
 
   localStorage.setItem('cardItems', JSON.stringify(local_update));
 
