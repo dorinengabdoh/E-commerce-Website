@@ -18,10 +18,9 @@ function displayItems() {
       top.innerHTML += `
       <div class="top">
         <div class="subcard" id="subcards">
-          <a href="/details.html?id=${element.item.id}&category=${element.item.category}"><img src=${element.item.thumbnail} id="details-page"/></a>
+          <a href="/?id=${element.item.id}&category=${element.item.category}"><img src=${element.item.thumbnail} id="details-page"/></a>
           <i class="fa-regular fa-heart"></i>
         </div>
-    
         <div class="snikersprice">
           <span id="snykers">${element.item.title}</span>
           <span id="snykers-price">$${element.item.price}</span>
