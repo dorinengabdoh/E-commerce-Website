@@ -226,8 +226,7 @@ hr {
 }
 
 .container4 {
-  margin-top: 8rem;
-  width: 90%;
+  width: 100%;
   background-color: fff;
   gap: 130px;
   display: grid;
@@ -810,10 +809,10 @@ textarea {
 
 .addto {
   text-align: center;
-  padding-top: 2rem;
+  padding-top: 4rem;
   font-size: 43px;
   font-family: 'Times New Roman', Times, serif;
-  padding-bottom: 2rem;
+  padding-bottom: 7rem;
 }
 
 /* payemnt */
@@ -915,9 +914,6 @@ form {
   padding-left: 1rem;
 }
 
-#items-selected {
-  font-size: 22px;
-}
 
 @media screen and (max-width: 1224px) {
   #brand {

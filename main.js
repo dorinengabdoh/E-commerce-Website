@@ -194,8 +194,8 @@ export function navbar() {
 <div class="basket">
   <button id="basketimg">
     <a href="./card.html" id="hover" class="hover"><span id="items-selected"></span></a>
-    <i id="icon1" class="fa-solid fa-bag-shopping"></i>
-  </button>
+    <i class="bi-cart"></i>
+    </button>
   <button id="bell">
     <span id="bells"></span>
     <i id="icon2" class="fa-regular fa-bell"></i>
