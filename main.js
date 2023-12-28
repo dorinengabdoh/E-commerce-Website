@@ -14,7 +14,6 @@ export function displayCards(fetchData) {
   top.innerHTML = ''
 
   // fucntion Addtocard
-
   const addListenersToAddToCardButton = () => {
     const allAdToCArdBtns = document.querySelectorAll('.addtocard')
     const selectItem = document.getElementById('items-selected')
