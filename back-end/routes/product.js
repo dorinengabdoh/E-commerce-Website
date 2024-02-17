@@ -1,23 +1,19 @@
 var express = require("express");
 var router = express.Router();
 let connection = require("../congif/bd_connect");
-
-
 router.get("/", function (req, res, next) {
   const getquery = ` SELECT
-  product.idProduct,
-  product.namePro,
-  product.imagePro,
-  product.price,
-  category.nameCat,
-  FROM product
-  LEFT JOIN
-    category ON product.idCat = category.idCat
-  ; `;
+  p.idPro,
+  p.namePro,
+  p.imagePro,
+  p.price,
+  c.nameCat
+FROM product AS p
+INNER JOIN category AS c ON p.idPro = c.idPro; `;
   connection.query(getquery, (err, data) => {
     console.log(data);
     if (data.length === 0) {
-      let err = new Error(`Meal is not found`);
+      let err = new Error(`product is not found`);
       err.status = 404;
       res.send(err);
       next(err);
