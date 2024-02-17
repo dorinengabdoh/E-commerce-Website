@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 let connection = require("../congif/bd_connect");
+
+// get All the product
 router.get("/", function (req, res, next) {
   const getquery = ` SELECT
   p.idPro,
@@ -12,6 +14,27 @@ FROM product AS p
 INNER JOIN category AS c ON p.idPro = c.idPro; `;
   connection.query(getquery, (err, data) => {
     console.log(data);
+    if (data.length === 0) {
+      let err = new Error(`product is not found`);
+      err.status = 404;
+      res.send(err);
+      next(err);
+    } else {
+      res.setHeader("Content-type", "application/json");
+      res.send(data);
+    }
+
+  });
+});
+
+// get al the category
+
+router.get("/categorie", function (req, res, next) {
+  const getquery = ` SELECT nameCat
+  FROM category;`;
+  connection.query(getquery, (err, data) => {
+    console.log(data);
+    
     if (data.length === 0) {
       let err = new Error(`product is not found`);
       err.status = 404;
