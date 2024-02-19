@@ -776,8 +776,12 @@ textarea {
 }
 
 #btnAdd {
-  padding: 5px;
-  
+  padding: 10px 20px;
+  background-color: #008000;
+  margin: 0 auto;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
 }
 
 .foot {

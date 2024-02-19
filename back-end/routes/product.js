@@ -44,11 +44,32 @@ router.get("/categorie", function (req, res, next) {
       res.setHeader("Content-type", "application/json");
       res.send(data);
     }
-
   });
 });
 
+// post request to add a product
 
+router.post('/add', function (req, res, next) {
+  // const { brand, color } = req.body;
+  // console.log(req.body);
+  const createQuery = `START TRANSACTION;
+
+  INSERT INTO product (namePro, imagePro, price)
+  VALUES ('doc', '["https://cdn.dummyjson.com/product-images/1/1.jpg",
+  "https://cdn.dummyjson.com/product-images/1/2.jpg",
+  "https://cdn.dummyjson.com/product-images/1/3.jpg",
+  "https://cdn.dummyjson.com/product-images/1/4.jpg",
+  "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"]', 250)
+  SET @productId = LAST_INSERT_ID()
+  INSERT INTO category (nameCat, idPro)
+  VALUES ('iphone9', 14)
+  COMMIT;
+  `
+  connection.query(createQuery, (err, data) => {
+    if (err) next(err)
+    else res.status(201).send({data})
+  })
+})
 
 
 

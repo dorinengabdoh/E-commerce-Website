@@ -316,10 +316,10 @@ buttons()
 // action
 
 export function add(){
-  const container7 = document.querySelector('container7')
+  const container7 = document.querySelector('.container7')
   if (container7) {
     container7.innerHTML=`
-    <a href="href="./add.html"> <button id="btnAdd" >Add</button>
+    <a href="./add.html"> <button id="btnAdd">Add</button>
     </a>
     `
   }
@@ -336,6 +336,6 @@ export function footer() {
   }
 }
 
-// footer()
+footer()
 
 document.querySelector('#app').innerHTML
