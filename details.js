@@ -46,6 +46,32 @@ function displaydetailsPicture(pict) {
     }
   })
 }
+
+
+export function edit(){
+  const container8 = document.querySelector('.container8')
+  if (container8) {
+    container8.innerHTML=`
+    <a href="./add.html"> <button id="btnAdd">Edit</button>
+    </a>
+    `
+  }
+}
+
+edit()
+
+
+export function remove(){
+  const container9 = document.querySelector('.container9')
+  if (container9) {
+    container9.innerHTML=`
+    <a href="./add.html"> <button id="btnAdd">Remove</button>
+    </a>
+    `
+  }
+}
+
+remove()
 // categoty
 function DisplaySimilarProduct(prod) {
   const mealContaine = document.querySelector('.similar')

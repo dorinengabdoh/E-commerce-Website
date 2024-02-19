@@ -23,7 +23,6 @@ INNER JOIN category AS c ON p.idPro = c.idPro; `;
       res.setHeader("Content-type", "application/json");
       res.send(data);
     }
-
   });
 });
 
@@ -34,7 +33,7 @@ router.get("/categorie", function (req, res, next) {
   FROM category;`;
   connection.query(getquery, (err, data) => {
     console.log(data);
-    
+
     if (data.length === 0) {
       let err = new Error(`product is not found`);
       err.status = 404;
@@ -49,44 +48,71 @@ router.get("/categorie", function (req, res, next) {
 
 // post request to add a product
 
-router.post('/add', function (req, res, next) {
-  // const { brand, color } = req.body;
-  // console.log(req.body);
+router.post("/add", function (req, res, next) {
+  const { namePro, price, imagePro, nameCat, idPro } = req.body;
+  const createQuery = `INSERT INTO product (namePro, imagePro, price) VALUES (?, ?, ?);`;
+  const querryCategory = `INSERT INTO category (nameCat, idPro) VALUES (?, ?);`;
+
+  connection.beginTransaction(function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    // Convert imagePro to JSON string
+    const imageProJson = JSON.stringify(imagePro);
+
+    connection.query(createQuery, [namePro, imageProJson, price], function (error, productResult) {
+      if (error) {
+        console.error("Error inserting product:", error);
+        return connection.rollback(function () {
+          next(error);
+        });
+      }
+
+      // Insert category after product insertion
+      connection.query(querryCategory, [nameCat, idPro], function (categoryError, categoryResult) {
+        if (categoryError) {
+          console.error("Error inserting category:", categoryError);
+          return connection.rollback(function () {
+            next(categoryError);
+          });
+        }
+
+        // Commit transaction if everything is successful
+        connection.commit(function (commitError) {
+          if (commitError) {
+            console.error("Error committing transaction:", commitError);
+            return connection.rollback(function () {
+              next(commitError);
+            });
+          }
+          // Send success response
+          res.status(201).json({ product: productResult, category: categoryResult });
+        });
+      });
+    });
+  });
+});
+
+// delete request
+router.delete("/:idPro", function (req, res, next) {
+  const idPro = req.params.id;
+  console.log(req.body);
   const createQuery = `START TRANSACTION;
-
-  INSERT INTO product (namePro, imagePro, price)
-  VALUES ('doc', '["https://cdn.dummyjson.com/product-images/1/1.jpg",
-  "https://cdn.dummyjson.com/product-images/1/2.jpg",
-  "https://cdn.dummyjson.com/product-images/1/3.jpg",
-  "https://cdn.dummyjson.com/product-images/1/4.jpg",
-  "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"]', 250)
-  SET @productId = LAST_INSERT_ID()
-  INSERT INTO category (nameCat, idPro)
-  VALUES ('iphone9', 14)
+  DELETE FROM category WHERE idPro = ${idPro};
+  DELETE FROM product WHERE idPro =${idPro};
   COMMIT;
-  `
+  `;
   connection.query(createQuery, (err, data) => {
-    if (err) next(err)
-    else res.status(201).send({data})
-  })
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (err) {
+      console.log(err);
+      if (err.message === "not found") next();
+      else {
+        next();
+      }
+    } else res.send(data);
+  });
+});
 
 // router.get('/:idRec', function (req, res, next) {
 //   console.log("working");
@@ -138,8 +164,6 @@ router.post('/add', function (req, res, next) {
 //     }
 //   })
 // });
-
-
 
 // router.post("/", function (req, res, next) {
 //   const {
@@ -253,7 +277,7 @@ router.post('/add', function (req, res, next) {
 //   });
 // });
 
-// // post  
+// // post
 // router.put("/:idRec", function (req, res, next) {
 //   const idRec = req.params.idRec;
 //   console.log(req.body);

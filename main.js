@@ -324,8 +324,9 @@ export function add(){
     `
   }
 }
-
 add()
+
+
 
 export function footer() {
   const container6 = document.querySelector('.container6')

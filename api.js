@@ -1,5 +1,5 @@
 export async function allCategories() {
-  const allcategories = "http://localhost:3000/product/categorie";
+  const allcategories = "http://localhost:3002/product/categorie";
   const fetchdata = await fetch(allcategories);
   const jasondata = await fetchdata.json();
   const simpleArray = jasondata.map(category => category.nameCat);
@@ -8,7 +8,7 @@ export async function allCategories() {
 }
 // add functionality to category to display images on the landing page
 export async function categorydisplay(nameCat) {
-  const eachcategory = `http://localhost:3000/product/${nameCat}`;
+  const eachcategory = `http://localhost:3002/product/${nameCat}`;
   const fetchdata = await fetch(eachcategory);
   const jasondata = await fetchdata.json();
   console.log(jasondata);
@@ -16,7 +16,7 @@ export async function categorydisplay(nameCat) {
 }
 
 export async function displayallproducts() {
-  const products = "http://localhost:3000/product";
+  const products = "http://localhost:3002/product";
   const productdata = await fetch(products);
   const data = await productdata.json();
   console.log(data);
