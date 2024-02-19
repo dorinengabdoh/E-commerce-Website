@@ -2,7 +2,7 @@ import { displayallproducts, allCategories, categorydisplay } from './api.js'
 
 const getJson = await allCategories()
 let productrender = []
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 10;
 
 let current_page = 0;
 
@@ -12,15 +12,14 @@ const getPaginationCount = () => Math.ceil(productrender.length / ITEMS_PER_PAGE
 export function displayCards(fetchData) {
   const top = document.querySelector('.container4')
   top.innerHTML = ''
-
   // fucntion Addtocard
   const addListenersToAddToCardButton = () => {
     const allAdToCArdBtns = document.querySelectorAll('.addtocard')
     const selectItem = document.getElementById('items-selected')
-
     allAdToCArdBtns.forEach((card) => {
       card.addEventListener('click', (e) => {
-        const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+        const imageId = e.target.dataset.imageid
+        console.log(imageId);// destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
         const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
 
         if (prevItems.find(prod => +prod?.item.id === +imageId))
@@ -44,15 +43,17 @@ export function displayCards(fetchData) {
 
   fetchData?.forEach((item) => {
     if (top) {
+      for (let i = 0; i < item.imagePro.length; i++) {
+        // const element = item.imagePro[i];
       top.innerHTML += `
     <div class="top">
       <div class="subcard" id="subcards">
-        <a href="/details.html?id=${item.id}&category=${item.category}"><img src=${item.thumbnail} id="details-page"/></a>
+        <a href="/details.html?id=${item.idPro}&category=${item.nameCat}"><img src=${item.imagePro[i]} id="details-page"/></a>
         <i class="fa-regular fa-heart"></i>
       </div>
 
       <div class="snikersprice">
-        <span id="snykers">${item.title}</span>
+        <span id="snykers">${item.namePro}</span>
         <span id="snykers-price">$${item.price}</span>
       </div>
 
@@ -73,6 +74,8 @@ export function displayCards(fetchData) {
       </div>
     </div>
   `
+}
+
     }
   })
 
@@ -309,6 +312,21 @@ export function buttons() {
 
 buttons()
 
+
+// action
+
+export function add(){
+  const container7 = document.querySelector('container7')
+  if (container7) {
+    container7.innerHTML=`
+    <a href="href="./add.html"> <button id="btnAdd" >Add</button>
+    </a>
+    `
+  }
+}
+
+add()
+
 export function footer() {
   const container6 = document.querySelector('.container6')
   if (container6) {
@@ -318,6 +336,6 @@ export function footer() {
   }
 }
 
-footer()
+// footer()
 
 document.querySelector('#app').innerHTML

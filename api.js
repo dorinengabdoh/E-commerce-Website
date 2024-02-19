@@ -7,8 +7,8 @@ export async function allCategories() {
   return simpleArray;
 }
 // add functionality to category to display images on the landing page
-export async function categorydisplay(category) {
-  const eachcategory = `http://localhost:3000/product/categorie/${category}`;
+export async function categorydisplay(nameCat) {
+  const eachcategory = `http://localhost:3000/product/${nameCat}`;
   const fetchdata = await fetch(eachcategory);
   const jasondata = await fetchdata.json();
   console.log(jasondata);
@@ -23,12 +23,12 @@ export async function displayallproducts() {
   return data;
 }
 
-export async function displayPageData(page = 0) {
-  const products = `https://dummyjson.com/products?limit=${MAX_ITEMS_PER_PAGE}&skip=${
-    page * MAX_ITEMS_PER_PAGE
-  }`;
-  const productdata = await fetch(products);
-  const data = await productdata.json();
-  console.log(data);
-  return data;
-}
+// export async function displayPageData(page = 0) {
+//   const products = `https://dummyjson.com/products?limit=${MAX_ITEMS_PER_PAGE}&skip=${
+//     page * MAX_ITEMS_PER_PAGE
+//   }`;
+//   const productdata = await fetch(products);
+//   const data = await productdata.json();
+//   console.log(data);
+//   return data;
+// }

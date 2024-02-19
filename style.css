@@ -775,6 +775,11 @@ textarea {
   width: 200%;
 }
 
+#btnAdd {
+  padding: 5px;
+  
+}
+
 .foot {
   border: none;
   border-radius: 3px;

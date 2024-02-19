@@ -23,27 +23,23 @@ const picture = await displayallproducts().then((Response) => {
 function displaydetailsPicture(pict) {
   const mealContainer = document.querySelector('.details-picture')
   pict?.forEach((product) => {
-    if (productId == product.id) {
+    if (productId == product.idPro) {
       currentProduct = product;
       const mealCard = document.createElement('div')
       mealCard.classList.add('.pict')
       mealCard.innerHTML = `
-    <img id="pict_detail" src="${product.thumbnail}" />
+    <img id="pict_detail" src="${product.imagePro[1]}" />
     <div class="image">
     <i class="fa-solid fa-chevron-left" id="prev"></i>
-    <img id="single_product" src="${product.images[0]}" />
-    <img id="single_product" src="${product.images[1]}" />
-    <img id="single_product" src="${product.images[2]}" />
-    <img id="single_product" src="${product.images[3]}" />
+    <img id="single_product" src="${product.imagePro[0]}" />
+    <img id="single_product" src="${product.imagePro[1]}" />
+    <img id="single_product" src="${product.imagePro[2]}" />
+    <img id="single_product" src="${product.imagePro[3]}" />
     <i class="fa-solid fa-chevron-right" id="next"></i>   
      </div>
     <div class="item-price">
     <p class="prices"> Product Price: $${product.price}</p>
     <p class="price"> Product Price: $${product.price}</p>
-    </div>
-    <div class="description">
-    <p id="desc">Product Description</p>
-    <p class="deux">${product.description}</p>
     </div>
     `
       mealContainer.appendChild(mealCard)
@@ -72,7 +68,7 @@ function DisplaySimilarProduct(prod) {
 const getCurrentItems = () => {
   const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
   console.log({prevItems, productId});
-  return prevItems.find(prod => +prod?.item.id === +productId);
+  return prevItems.find(prod => +prod?.item.idPro === +productId);
 }
 
 
