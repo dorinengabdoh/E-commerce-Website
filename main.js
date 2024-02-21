@@ -48,7 +48,7 @@ export function displayCards(fetchData) {
       top.innerHTML += `
     <div class="top">
       <div class="subcard" id="subcards">
-        <a href="/details.html?id=${item.idPro}&category=${item.nameCat}"><img src=${item.imagePro[i]} id="details-page"/></a>
+        <a href="/details.html?id=${item.idPro}"><img src=${item.imagePro[i]} id="details-page"/></a>
         <i class="fa-regular fa-heart"></i>
       </div>
 

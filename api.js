@@ -23,6 +23,14 @@ export async function displayallproducts() {
   return data;
 }
 
+// export async function removeProduct (){
+//   const remove = `http://localhost:3002/product/${idPro}`
+//   const rPorduct = await fetch(remove)
+//   const removeData = await rPorduct.json()
+//   console.log(removeData);
+//   return removeData
+// }
+
 // export async function displayPageData(page = 0) {
 //   const products = `https://dummyjson.com/products?limit=${MAX_ITEMS_PER_PAGE}&skip=${
 //     page * MAX_ITEMS_PER_PAGE

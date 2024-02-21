@@ -1,48 +1,40 @@
 export function form() {
-  const container11 = document.querySelector(".container11");
-  if (container11) {
-    container11.innerHTML = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product</title>
-    <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-    <div class="container">
-      <h2>Add Product</h2>
-      <form action="/product/add" method="post">
-        <div class="form-group">
-          <label for="namePro">Product Name:</label>
-          <input type="text" id="namePro" name="namePro" required>
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <input type="number" id="price" name="price" required>
-        </div>
-        <div class="form-group">
-          <label for="imagePro">Image URL:</label>
-          <input type="url" id="imagePro" name="imagePro" required>
-        </div>
-        <div class="form-group">
-          <label for="nameCat">Category Name:</label>
-          <input type="text" id="nameCat" name="nameCat" required>
-        </div>
-        <div class="form-group">
-          <label for="idPro">Product ID:</label>
-          <input type="text" id="idPro" name="idPro" required>
-        </div>
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
-    </body>
-    </html>
-    
+  document.getElementById("add-product-form").addEventListener("submit", function (event) {
+    event.preventDefault();
 
-     `;
-  }
+    var productName = document.getElementById("productName").value;
+    var productUrl = document.getElementById("productUrl").value;
+    var productPrice = parseFloat(document.getElementById("productPrice").value);
+    var productCategory = document.getElementById("productCategory").value;
+
+    var newProduct = {
+      namePro: productName,
+      imagePro: [productUrl], 
+      price: productPrice,
+      nameCat: productCategory,
+    };
+
+    fetch('http://localhost:3002/product/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newProduct)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur lors de l\'ajout du produit');
+      }
+      console.log('Produit ajouté avec succès');
+      console.log(response);
+      // Réinitialiser le formulaire
+      document.getElementById("add-product-form").reset();
+    })
+    .catch(error => {
+      console.error('Erreur:', error);
+    });
+  });
+  
 }
 
 form();
