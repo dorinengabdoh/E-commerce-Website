@@ -3,8 +3,10 @@ export async function allCategories() {
   const fetchdata = await fetch(allcategories);
   const jasondata = await fetchdata.json();
   const simpleArray = jasondata.map(category => category.nameCat);
-  console.log(simpleArray);
-  return simpleArray;
+  const uniqueSet = new Set(simpleArray);
+  const uniqueArray = [...uniqueSet]
+  console.log(uniqueArray);
+  return uniqueArray;
 }
 // add functionality to category to display images on the landing page
 export async function categorydisplay(nameCat) {

@@ -22,12 +22,12 @@ export function form() {
       body: JSON.stringify(newProduct)
     })
     .then(response => {
-      if (!response.ok) {
+      if (!response.ok) {              
         throw new Error('Erreur lors de l\'ajout du produit');
       }
       console.log('Produit ajouté avec succès');
+      alert("product Added");
       console.log(response);
-      // Réinitialiser le formulaire
       document.getElementById("add-product-form").reset();
     })
     .catch(error => {

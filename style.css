@@ -38,6 +38,10 @@
   align-items: center;
 }
 
+.name {
+  display: flex;
+}
+
 .title {
   display: flex;
   /* justify-content: center; */
@@ -67,6 +71,8 @@
   color: #000;
 }
 
+
+
 .basket {
   width: 34%;
   display: flex;
@@ -89,7 +95,7 @@
   background-color: #fff;
   display: flex;
   align-items: center;
-
+  display: none;
 }
 
 
@@ -231,6 +237,7 @@ hr {
   gap: 130px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 4rem;
 }
 
 .dropdown-buttons {
@@ -370,6 +377,7 @@ hr {
   align-items: center;
   justify-content: center;
   color: #303e6f;
+  display: none;
 }
 
 .previews {
@@ -432,6 +440,7 @@ hr {
   background-color: red;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .container8 {
@@ -439,6 +448,8 @@ hr {
   background-color: #2e2b2b;
   border: none;
   cursor: pointer;
+  color: floralwhite;
+  border-radius: 5px;
 }
 
 #link {
@@ -508,6 +519,11 @@ input {
 
 textarea {
   padding-top: 2rem;
+}
+
+.container7 {
+  margin-left: 36%;
+  margin-bottom: 4rem;
 }
 
 #send {
@@ -773,6 +789,13 @@ textarea {
   display: flex;
 }
 
+.bouton{
+  display: flex;
+  gap: 2rem;
+  margin-left: 70%;
+  margin-top: 2rem;
+}
+
 .simitem {
   font-size: 39px;
   font-weight: bold;
@@ -796,6 +819,8 @@ textarea {
   color: #fff;
   cursor: pointer;
   text-align: center;
+  border: none;
+  border-radius: 5px;
 }
 
 .foot {
