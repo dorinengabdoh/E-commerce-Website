@@ -10,7 +10,9 @@ export async function allCategories() {
 }
 // add functionality to category to display images on the landing page
 export async function categorydisplay(nameCat) {
-  const eachcategory = `http://localhost:3002/product/${nameCat}`;
+  const eachcategory = `http://localhost:3002/product/${nameCat}`;e-e-commerce
+  commerce
+
   const fetchdata = await fetch(eachcategory);
   const jasondata = await fetchdata.json();
   console.log(jasondata);
