@@ -2,7 +2,7 @@ import { displayallproducts, allCategories, categorydisplay } from './api.js'
 
 const getJson = await allCategories()
 let productrender = []
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 10;
 
 let current_page = 0;
 
@@ -12,16 +12,14 @@ const getPaginationCount = () => Math.ceil(productrender.length / ITEMS_PER_PAGE
 export function displayCards(fetchData) {
   const top = document.querySelector('.container4')
   top.innerHTML = ''
-
   // fucntion Addtocard
-
   const addListenersToAddToCardButton = () => {
     const allAdToCArdBtns = document.querySelectorAll('.addtocard')
     const selectItem = document.getElementById('items-selected')
-
     allAdToCArdBtns.forEach((card) => {
       card.addEventListener('click', (e) => {
-        const imageId = e.target.dataset.imageid // destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
+        const imageId = e.target.dataset.imageid
+        console.log(imageId);// destructuring e.target.dataset. equivalent to const imageId = e.target.dataset.imageId;
         const prevItems = JSON.parse(localStorage.getItem('cardItems')) || [];
 
         if (prevItems.find(prod => +prod?.item.id === +imageId))
@@ -45,20 +43,22 @@ export function displayCards(fetchData) {
 
   fetchData?.forEach((item) => {
     if (top) {
+      for (let i = 0; i < item.imagePro.length; i++) {
+        // const element = item.imagePro[i];
       top.innerHTML += `
     <div class="top">
       <div class="subcard" id="subcards">
-        <a href="/details.html?id=${item.id}&category=${item.category}"><img src=${item.thumbnail} id="details-page"/></a>
+        <a href="/details.html?id=${item.idPro}"><img src=${item.imagePro[i]} id="details-page"/></a>
         <i class="fa-regular fa-heart"></i>
       </div>
 
       <div class="snikersprice">
-        <span id="snykers">${item.title}</span>
+        <span id="snykers">${item.namePro}</span>
         <span id="snykers-price">$${item.price}</span>
       </div>
 
       <div class="shoes-available" data-name>
-        <p id="shoes"> 5 types of shoes available</p>
+        <p id="shoes">${item.nameCat}</p>
       </div>
       <div class="stars">
         <i class="fas fa-star"></i>
@@ -74,6 +74,8 @@ export function displayCards(fetchData) {
       </div>
     </div>
   `
+}
+
     }
   })
 
@@ -216,7 +218,7 @@ export function navbar() {
   if (cardItemsLength > 0) {
     spanElement.textContent = cardItemsLength;
   } else {
-    spanElement.textContent = "0"; // or any other default value if desired
+    spanElement.textContent = "0";
   }
 }
 
@@ -244,19 +246,22 @@ category.innerHTML = getJson.map(
  <option id="category">${item}</option>`
 )
 
+console.log(category);
+
 let selectedCategory = ''
 
 category.addEventListener('input', async (e) => {
   category = e.target.value
   selectedCategory = category
 
-  const res = await categorydisplay(category)
-  productrender = res?.products
+  const res = await displayallproducts(category)
+  // productrender = res?.filter(category => category.nameCat)
+   productrender = res.filter(product => product.nameCat === selectedCategory);
+// console.log(filteredProducts);
 
   console.log({ category, productrender, res })
 
   displayCards(productrender)
-  // top.style.display = "none"
   console.log(selectedCategory)
 
   return selectedCategory
@@ -309,6 +314,22 @@ export function buttons() {
 }
 
 buttons()
+
+
+// action
+
+export function add(){
+  const container7 = document.querySelector('.container7')
+  if (container7) {
+    container7.innerHTML=`
+    <a href="./add.html"> <button id="btnAdd">Add a product</button>
+    </a>
+    `
+  }
+}
+add()
+
+
 
 export function footer() {
   const container6 = document.querySelector('.container6')
